@@ -92,7 +92,7 @@ func start_attack(id : int):
 	elif id == 5:
 		beakon_attack(10, diff)
 	elif id == 6:
-		arrow_attack(60, diff)
+		arrow_attack(18 + floor(diff * 42), diff)
 	elif id == 7:
 		geoguesser_attack()
 
@@ -294,6 +294,7 @@ func remove_cocks():
 
 func trident_attack(amount : int, difficulty : float):
 	var screen_size = Vector2(37, 75)
+	give_immortales(1.5)
 	apply_size(screen_size)
 	for i in range(amount + int(difficulty * 10)):
 		var trident = tident_obj.instantiate()
@@ -315,6 +316,7 @@ func trident_attack(amount : int, difficulty : float):
 
 func spawn_lighting(pos):
 	var lighting = lighting_obj.instantiate()
+	lighting.scale.x = -1 if randi() % 2 == 0 else 1
 	lighting.position = Vector2(pos.x, DEAFULT_SIZE.y - 2)
 	setup_for_attack(lighting, true)
 

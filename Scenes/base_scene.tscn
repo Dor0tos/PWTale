@@ -89,7 +89,7 @@ shown_text = PackedStringArray("(Надпись очень неаккуратн�
 [node name="WallSign6" parent="World" node_paths=PackedStringArray("white_list_body") instance=ExtResource("4_df1r7")]
 position = Vector2(1324, 65)
 white_list_body = NodePath("../Gneg")
-shown_text = PackedStringArray("(Надпись очень неаккуратным почерком)", "([shake]Двухщелевой эксперимет[/shake])")
+shown_text = PackedStringArray("(Надпись очень неаккуратным почерком)", "([shake]Двухщелевой эксперимент[/shake])")
 
 [node name="WallSign7" parent="World" node_paths=PackedStringArray("white_list_body") instance=ExtResource("4_df1r7")]
 position = Vector2(1612, 65)

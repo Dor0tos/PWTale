@@ -146,7 +146,10 @@ func _on_battle_button_pressed(sender):
 	decide_panel.activate(options)
 
 func _return_back(arg):
-	_action_end()
+	decide_panel.deactivate()
+	actions_stack = []
+	bottom_panel_active = true
+	enable_buttons()
 
 @onready var attack_stack = []
 func _begin_attack():

@@ -47,7 +47,7 @@ size = Vector2(2, 71)
 bg_color = Color(0, 0.576471, 0.909804, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_keh5d"]
-size = Vector2(7, 6)
+size = Vector2(0.1, 0.1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gk81h"]
 size = Vector2(0.1, 0.1)
@@ -256,6 +256,7 @@ script = ExtResource("2_58rlc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Soul"]
 shape = SubResource("RectangleShape2D_keh5d")
+disabled = true
 
 [node name="Soul" type="Sprite2D" parent="Soul"]
 modulate = Color(1, 0, 0, 1)
@@ -264,8 +265,9 @@ texture = ExtResource("1_w7s7v")
 [node name="SoulDamage_area" type="Area2D" parent="Soul"]
 monitorable = false
 
-[node name="Shape" type="CollisionShape2D" parent="Soul/SoulDamage_area"]
-shape = SubResource("RectangleShape2D_keh5d")
+[node name="Shape" type="CollisionPolygon2D" parent="Soul/SoulDamage_area"]
+position = Vector2(-0.5, 0)
+polygon = PackedVector2Array(0, 3, -3, 0, -3, -2, -2, -3, 0, -3, 0, -2, 1, -2, 1, -3, 3, -3, 4, -2, 4, 0, 1, 3)
 
 [node name="_geoguesser_area" type="Area2D" parent="Soul"]
 position = Vector2(0, -0.5)

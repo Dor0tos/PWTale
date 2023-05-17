@@ -65,6 +65,7 @@ func begin_attack():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
+		area_stack = [miss_mod]
 		hide_panel()
 	else:
 		end_attack()
