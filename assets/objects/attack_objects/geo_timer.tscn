@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyyrlx3kewow0"]
+
+[ext_resource type="Script" path="res://assets/objects/attack_objects/geo_timer.gd" id="1_jstky"]
+[ext_resource type="AudioStream" uid="uid://bkm628bjhb634" path="res://assets/sounds/timer_sount.wav" id="2_gnmn3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_naits"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idn3i"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh4l1"]
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu4in"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="geo_timer" type="Node2D"]
+script = ExtResource("1_jstky")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sound_timer" type="Timer" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+clip_contents = true
+offset_left = -50.0
+offset_top = -2.0
+offset_right = 50.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_naits")
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel"]
+offset_right = 82.0
+offset_bottom = 20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_idn3i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xh4l1")
+value = 30.0
+show_percentage = false
+
+[node name="Panel2" type="Panel" parent="Panel"]
+offset_left = 80.0
+offset_right = 100.0
+offset_bottom = 20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mu4in")
+
+[node name="Label" type="Label" parent="Panel/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_gnmn3")
+pitch_scale = 0.74
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Sound_timer" to="." method="_on_sound_timer_timeout"]

@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpu3l4ppywhlq"]
+
+[ext_resource type="Texture2D" uid="uid://w0bmlqkwjenw" path="res://assets/sprites/attack_obj/Trident.png" id="1_8xpqu"]
+[ext_resource type="Script" path="res://assets/objects/attack_objects/trident.gd" id="1_ip6l4"]
+[ext_resource type="AudioStream" uid="uid://bm8xnnv2txiyd" path="res://assets/sounds/tnt_fall.wav" id="3_t47mg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7fvj1"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13cyb"]
+size = Vector2(8, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5ym3"]
+size = Vector2(2, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1intt"]
+size = Vector2(6, 1)
+
+[sub_resource type="Animation" id="Animation_xjw5x"]
+resource_name = "RESET"
+length = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ip7d8"]
+_data = {
+"RESET": SubResource("Animation_xjw5x")
+}
+
+[node name="Trident" type="RigidBody2D"]
+lock_rotation = true
+script = ExtResource("1_ip6l4")
+
+[node name="blank" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7fvj1")
+disabled = true
+
+[node name="Trident" type="Sprite2D" parent="."]
+position = Vector2(0, -15)
+texture = ExtResource("1_8xpqu")
+
+[node name="_damage_area_trident" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="_damage_area_trident"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_13cyb")
+debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="_damage_area_trident"]
+position = Vector2(0, -19.25)
+shape = SubResource("RectangleShape2D_l5ym3")
+debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="_damage_area_trident"]
+position = Vector2(0, -26.5)
+shape = SubResource("RectangleShape2D_1intt")
+debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_t47mg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ip7d8")
+}
+
+[connection signal="area_entered" from="_damage_area_trident" to="." method="_on__damage_area_area_entered"]

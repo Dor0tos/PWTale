@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5sw7chijw4nb"]
+
+[ext_resource type="Script" path="res://assets/objects/attack_objects/cock.gd" id="1_583go"]
+[ext_resource type="Texture2D" uid="uid://51q3poqhis0u" path="res://assets/sprites/attack_obj/cock.png" id="1_xhsbd"]
+[ext_resource type="AudioStream" uid="uid://bj4k5jey425cs" path="res://assets/sounds/cock_pop.wav" id="3_rxiry"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ll2"]
+size = Vector2(9, 7)
+
+[node name="Cock" type="Node2D"]
+script = ExtResource("1_583go")
+
+[node name="Cock" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_xhsbd")
+
+[node name="_damage_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="_damage_area"]
+position = Vector2(0.5, -5.5)
+shape = SubResource("RectangleShape2D_y3ll2")
+debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rxiry")
+volume_db = -6.0

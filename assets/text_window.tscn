@@ -1,0 +1,107 @@
+[gd_scene load_steps=5 format=3 uid="uid://vf0dqe54r4jj"]
+
+[ext_resource type="Texture2D" uid="uid://b8ssa3hd643r5" path="res://assets/PWGood_portrait.png" id="1_80j60"]
+[ext_resource type="Script" path="res://scripts/text_window.gd" id="1_s5fgv"]
+[ext_resource type="AudioStream" uid="uid://d2m76dcmamupf" path="res://assets/sounds/SND_TXT1.wav" id="3_v1ogl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imnfr"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[node name="TextWindow" type="CanvasLayer"]
+process_mode = 3
+layer = 4
+script = ExtResource("1_s5fgv")
+
+[node name="TextWindow" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextWindow"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="TextWindow/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_imnfr")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextWindow/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextWindow/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(73, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_80j60")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 7
+
+[node name="Label" type="Label" parent="TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "*"
+
+[node name="MarginContainer" type="MarginContainer" parent="TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = -196
+
+[node name="Text" type="RichTextLabel" parent="TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/line_separation = 9
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Строка 1
+Строка 2
+Строка 3"
+scroll_active = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_v1ogl")
+autoplay = true
+mix_target = 2
+max_polyphony = 100
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

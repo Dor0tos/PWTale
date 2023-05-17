@@ -1,0 +1,649 @@
+[gd_scene load_steps=27 format=3 uid="uid://bsrp54qtce06e"]
+
+[ext_resource type="Script" path="res://scripts/battle.gd" id="1_rv1ro"]
+[ext_resource type="PackedScene" uid="uid://ds4bo0jse2578" path="res://assets/objects/pw_good.tscn" id="1_xixm8"]
+[ext_resource type="Script" path="res://scripts/text_window.gd" id="2_5p16o"]
+[ext_resource type="PackedScene" uid="uid://5dp34btieowo" path="res://assets/attack_panel.tscn" id="2_6e38g"]
+[ext_resource type="FontFile" uid="uid://cfk1sf0ljh5yl" path="res://assets/fonts/crypt-of-tomorrow-ut-font-no-rus.ttf" id="2_7r0b4"]
+[ext_resource type="PackedScene" uid="uid://cbknaoyvfux8h" path="res://assets/objects/attack_template.tscn" id="2_t24u1"]
+[ext_resource type="Texture2D" uid="uid://7521p7spefrn" path="res://assets/sprites/action_icon.png" id="3_bmiev"]
+[ext_resource type="PackedScene" uid="uid://j0sqqg5turwa" path="res://assets/objects/health_bar.tscn" id="3_ipyos"]
+[ext_resource type="Texture2D" uid="uid://b8ssa3hd643r5" path="res://assets/PWGood_portrait.png" id="3_np21l"]
+[ext_resource type="Script" path="res://scripts/button_fight.gd" id="3_sxncv"]
+[ext_resource type="Texture2D" uid="uid://dhqqnfesee6oq" path="res://assets/sprites/item_icon.png" id="4_3063k"]
+[ext_resource type="Texture2D" uid="uid://b18nqqq1ykec3" path="res://assets/sprites/fight_icon.png" id="4_al7by"]
+[ext_resource type="AudioStream" uid="uid://d2m76dcmamupf" path="res://assets/sounds/SND_TXT1.wav" id="4_qtguu"]
+[ext_resource type="Texture2D" uid="uid://dmwwwn7qf5a1c" path="res://assets/sprites/mercy_icon.png" id="5_beet5"]
+[ext_resource type="PackedScene" uid="uid://btopg27375q" path="res://assets/base_panel.tscn" id="5_d73g2"]
+[ext_resource type="Texture2D" uid="uid://besq67knta6qf" path="res://assets/sprites/soul.png" id="5_ueg1h"]
+[ext_resource type="AudioStream" uid="uid://c4wqpakvse6f1" path="res://assets/sounds/snd_squeak.wav" id="11_ddcs1"]
+[ext_resource type="PackedScene" uid="uid://cxld2m0fhnd0d" path="res://assets/objects/batlle_background.tscn" id="15_36qer"]
+[ext_resource type="AudioStream" uid="uid://bxmtax33ltom4" path="res://assets/sounds/JETPACK HELLRIDE (MEGALOVANIA, but it's Jetpack Joyride) (mp3cut.net) (1).mp3" id="16_6u5ik"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8mva"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1t4im"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7khti"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r5vg"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.980392, 0.415686, 0.0392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f86iq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.980392, 0.415686, 0.0392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8j7q"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.980392, 0.415686, 0.0392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq5y1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.980392, 0.415686, 0.0392157, 1)
+
+[node name="Battle" type="CanvasLayer"]
+script = ExtResource("1_rv1ro")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o8mva")
+
+[node name="MainPanel" type="MarginContainer" parent="Panel"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 68
+theme_override_constants/margin_right = 68
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainPanel"]
+layout_mode = 2
+alignment = 2
+
+[node name="TabPanels" type="Control" parent="Panel/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Panel/MainPanel/VBoxContainer/TabPanels"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1t4im")
+
+[node name="Attack_Template" parent="Panel/MainPanel/VBoxContainer/TabPanels" instance=ExtResource("2_t24u1")]
+visible = false
+layout_mode = 1
+offset_left = 124.0
+offset_top = 38.0
+offset_right = -124.0
+offset_bottom = -37.0
+
+[node name="Attack Panel" parent="Panel/MainPanel/VBoxContainer/TabPanels" instance=ExtResource("2_6e38g")]
+visible = false
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Decide Panel" parent="Panel/MainPanel/VBoxContainer/TabPanels" instance=ExtResource("5_d73g2")]
+visible = false
+layout_mode = 1
+
+[node name="TextWindow" type="Control" parent="Panel/MainPanel/VBoxContainer/TabPanels"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5p16o")
+
+[node name="TextWindow" type="Control" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow/TextWindow"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow/TextWindow/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7khti")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow/TextWindow/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow/TextWindow/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Portrait" type="TextureRect" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow/TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(73, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("3_np21l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow/TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow/TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "*"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow/TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Text" type="RichTextLabel" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow/TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/line_separation = 9
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Строка 1
+Строка 2
+Строка 3"
+scroll_active = false
+
+[node name="Timer" type="Timer" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow"]
+wait_time = 0.05
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow"]
+stream = ExtResource("4_qtguu")
+autoplay = true
+mix_target = 2
+max_polyphony = 100
+
+[node name="CharacterPanel" type="HBoxContainer" parent="Panel/MainPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Container" type="Control" parent="Panel/MainPanel/VBoxContainer/CharacterPanel"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainPanel/VBoxContainer/CharacterPanel/Container"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 64.0
+grow_vertical = 2
+
+[node name="Name_L" type="Label" parent="Panel/MainPanel/VBoxContainer/CharacterPanel/Container/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7r0b4")
+theme_override_font_sizes/font_size = 5
+text = "GNEG"
+
+[node name="Level_L" type="Label" parent="Panel/MainPanel/VBoxContainer/CharacterPanel/Container/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7r0b4")
+theme_override_font_sizes/font_size = 5
+text = "yp 19"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/CharacterPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = -25
+theme_override_constants/margin_bottom = 3
+
+[node name="HealthBar" parent="Panel/MainPanel/VBoxContainer/CharacterPanel/MarginContainer" instance=ExtResource("3_ipyos")]
+layout_mode = 2
+Health_Cur = 92
+Health_Max = 92
+
+[node name="ButtonsPanel" type="HBoxContainer" parent="Panel/MainPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Battle Button" type="Control" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel"]
+custom_minimum_size = Vector2(59, 19)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("3_sxncv")
+text = "БИТВА"
+icon = ExtResource("4_al7by")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Panel" type="Panel" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6r5vg")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 3
+
+[node name="Control" type="Control" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button/MarginContainer/Panel/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button/MarginContainer/Panel/MarginContainer2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -6.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.980392, 0.415686, 0.0392157, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[right]БИТВА"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button/MarginContainer/Panel/MarginContainer"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(16, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("5_ueg1h")
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Action Button" type="Control" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel"]
+custom_minimum_size = Vector2(59, 19)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("3_sxncv")
+text = "ДЕЙСТВ"
+icon = ExtResource("3_bmiev")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Panel" type="Panel" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f86iq")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 3
+
+[node name="Control" type="Control" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button/MarginContainer/Panel/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button/MarginContainer/Panel/MarginContainer2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -6.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.980392, 0.415686, 0.0392157, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[right]БИТВА"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button/MarginContainer/Panel/MarginContainer"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(16, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("5_ueg1h")
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Items Button" type="Control" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel"]
+custom_minimum_size = Vector2(59, 19)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("3_sxncv")
+text = "ПРЕДМ"
+icon = ExtResource("4_3063k")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Panel" type="Panel" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y8j7q")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 3
+
+[node name="Control" type="Control" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button/MarginContainer/Panel/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button/MarginContainer/Panel/MarginContainer2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -6.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.980392, 0.415686, 0.0392157, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[right]БИТВА"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button/MarginContainer/Panel/MarginContainer"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(16, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("5_ueg1h")
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Mercy Button" type="Control" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel"]
+custom_minimum_size = Vector2(59, 19)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("3_sxncv")
+text = "ПОЩАДА"
+icon = ExtResource("5_beet5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Panel" type="Panel" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kq5y1")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 3
+
+[node name="Control" type="Control" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel/MarginContainer2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -6.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.980392, 0.415686, 0.0392157, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[right]БИТВА"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel/MarginContainer"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(16, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("5_ueg1h")
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Batlle_Background" parent="." instance=ExtResource("15_36qer")]
+position = Vector2(192, 43)
+
+[node name="PWGood" parent="." instance=ExtResource("1_xixm8")]
+position = Vector2(192, 59)
+scale = Vector2(0.8, 0.8)
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ddcs1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_6u5ik")
+volume_db = -14.0
+autoplay = true
+
+[connection signal="attack_finished" from="Panel/MainPanel/VBoxContainer/TabPanels/Attack_Template" to="." method="_on_attack_template_attack_finished"]
+[connection signal="get_damage" from="Panel/MainPanel/VBoxContainer/TabPanels/Attack_Template" to="." method="_on_attack_template_get_damage"]
+[connection signal="timeout" from="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow/Timer" to="Panel/MainPanel/VBoxContainer/TabPanels/TextWindow" method="_on_timer_timeout" flags=18]
+[connection signal="button_pressed" from="Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button" to="." method="_on_battle_button_pressed"]
+[connection signal="button_pressed" from="Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button" to="." method="_on_action_button_pressed"]
+[connection signal="button_pressed" from="Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button" to="." method="_on_items_button_pressed"]
+[connection signal="button_pressed" from="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button" to="." method="_on_mercy_button_pressed"]

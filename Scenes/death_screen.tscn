@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://wm72p68l7lkg"]
+
+[ext_resource type="Texture2D" uid="uid://25denujnau1v" path="res://assets/sprites/soul_destruction.png" id="1_144yg"]
+[ext_resource type="Script" path="res://scripts/death_screen.gd" id="1_abnsk"]
+[ext_resource type="Texture2D" uid="uid://bsp7rbm22fwu6" path="res://assets/sprites/soul_part.png" id="2_5e5jr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8h05"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eqjsb"]
+emission_shape = 1
+emission_sphere_radius = 3.0
+particle_flag_disable_z = true
+direction = Vector3(0, 500000, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+angular_velocity_min = 180.0
+angular_velocity_max = 360.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_max = 50.0
+angle_min = 229.8
+angle_max = 229.8
+
+[node name="Death_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abnsk")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m8h05")
+
+[node name="Soul" type="Node2D" parent="."]
+position = Vector2(159, 83)
+
+[node name="Sprite2D" type="Sprite2D" parent="Soul"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_144yg")
+hframes = 2
+
+[node name="Soul_particles" type="GPUParticles2D" parent="Soul"]
+modulate = Color(1, 0, 0, 1)
+emitting = false
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_eqjsb")
+texture = ExtResource("2_5e5jr")
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]

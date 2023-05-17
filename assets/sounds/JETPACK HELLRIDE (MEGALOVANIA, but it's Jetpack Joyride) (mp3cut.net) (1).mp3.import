@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxmtax33ltom4"
+path="res://.godot/imported/JETPACK HELLRIDE (MEGALOVANIA, but it's Jetpack Joyride) (mp3cut.net) (1).mp3-3023e94ff31aab56bfc03e37dcdceda5.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/JETPACK HELLRIDE (MEGALOVANIA, but it's Jetpack Joyride) (mp3cut.net) (1).mp3"
+dest_files=["res://.godot/imported/JETPACK HELLRIDE (MEGALOVANIA, but it's Jetpack Joyride) (mp3cut.net) (1).mp3-3023e94ff31aab56bfc03e37dcdceda5.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=7.84
+bpm=0.0
+beat_count=0
+bar_beats=4

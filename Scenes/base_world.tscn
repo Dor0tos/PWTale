@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgfxe57mjf1tw"]
+
+[ext_resource type="PackedScene" uid="uid://cpa6ya8jw40gf" path="res://assets/hall_frame.tscn" id="1_alfo6"]
+[ext_resource type="PackedScene" uid="uid://cy8g2um734pb2" path="res://assets/hall_frame_empty.tscn" id="2_aybuv"]
+[ext_resource type="PackedScene" uid="uid://c1guyr3aq3o6d" path="res://assets/wall_sign.tscn" id="3_3o6pf"]
+[ext_resource type="PackedScene" uid="uid://ivwpff8il8ye" path="res://assets/floor.tscn" id="4_becf7"]
+[ext_resource type="PackedScene" uid="uid://d0nhqfxs1yidw" path="res://assets/front_wall.tscn" id="5_k2hie"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="HallFrame" parent="." instance=ExtResource("1_alfo6")]
+position = Vector2(480, 0)
+
+[node name="HallFrame3" parent="." instance=ExtResource("1_alfo6")]
+position = Vector2(192, 0)
+
+[node name="HallFrame2" parent="." instance=ExtResource("2_aybuv")]
+
+[node name="HallFrame4" parent="." instance=ExtResource("2_aybuv")]
+position = Vector2(288, 0)
+
+[node name="WallSign" parent="." node_paths=PackedStringArray("white_list_body") instance=ExtResource("3_3o6pf")]
+position = Vector2(269, 70)
+white_list_body = NodePath("")
+shown_text = PackedStringArray("Это я, Гнег...", "Вторая страница", "Очень длинный текст жесть просто какой длинный, аж на 2 строки разросся, а нет уже на 3")
+
+[node name="Floor3" parent="." instance=ExtResource("4_becf7")]
+position = Vector2(0, 144)
+
+[node name="Floor4" parent="." instance=ExtResource("4_becf7")]
+position = Vector2(288, 144)
+
+[node name="FrontWall" parent="." instance=ExtResource("5_k2hie")]
+position = Vector2(0, 199)
+
+[node name="FrontWall2" parent="." instance=ExtResource("5_k2hie")]
+position = Vector2(288, 199)

@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=3 uid="uid://cuho81silr413"]
+
+[ext_resource type="Script" path="res://assets/objects/attack_objects/slime_block.gd" id="1_sak1n"]
+[ext_resource type="Texture2D" uid="uid://bexq4kjdxveek" path="res://assets/sprites/attack_obj/slime_block.png" id="1_ty48h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ik5gj"]
+size = Vector2(12, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_foc3u"]
+size = Vector2(12, 1.5)
+
+[sub_resource type="Animation" id="Animation_dadkc"]
+resource_name = "Bottom_collision"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlimeBlock:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_yb21d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlimeBlock:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_konnk"]
+resource_name = "Top_collision"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlimeBlock:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fga5n"]
+_data = {
+"Bottom_collision": SubResource("Animation_dadkc"),
+"RESET": SubResource("Animation_yb21d"),
+"Top_collision": SubResource("Animation_konnk")
+}
+
+[node name="Slime_Block" type="Node2D"]
+script = ExtResource("1_sak1n")
+
+[node name="SlimeBlock" type="Sprite2D" parent="."]
+texture = ExtResource("1_ty48h")
+hframes = 3
+
+[node name="_damage_area" type="Area2D" parent="."]
+position = Vector2(1, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="_damage_area"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_ik5gj")
+debug_color = Color(0.701961, 0, 0, 0.419608)
+
+[node name="collision_detecter" type="Area2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_detecter"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_foc3u")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="collision_detecter"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_foc3u")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fga5n")
+}
+
+[connection signal="area_entered" from="collision_detecter" to="." method="_on_collision_detecter_area_entered"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpa6ya8jw40gf"]
+
+[ext_resource type="Texture2D" uid="uid://cb5tra4m04dh0" path="res://assets/Base_hall.png" id="1_ts6pb"]
+
+[node name="HallFrame" type="StaticBody2D"]
+
+[node name="BaseHall" type="Sprite2D" parent="."]
+position = Vector2(48, 72)
+texture = ExtResource("1_ts6pb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 86, 4, 86, 11, 83, 11, 80, 32, 80, 32, 71, 63, 71, 63, 80, 85, 80, 85, 83, 92, 86, 96, 86, 96, 0, 0, 0)

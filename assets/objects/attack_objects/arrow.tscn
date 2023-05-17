@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnm8qja8ljmc6"]
+
+[ext_resource type="Script" path="res://assets/objects/attack_objects/arrow.gd" id="1_yj6xs"]
+[ext_resource type="Texture2D" uid="uid://dmkobuioci0gh" path="res://assets/sprites/attack_obj/arrow.png" id="2_brr5t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_734hk"]
+size = Vector2(8, 3)
+
+[node name="Arrow" type="Node2D"]
+script = ExtResource("1_yj6xs")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(4, 0)
+texture = ExtResource("2_brr5t")
+
+[node name="_damage_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="_damage_area"]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_734hk")
+debug_color = Color(0.701961, 0, 0, 0.419608)
+
+[connection signal="area_entered" from="_damage_area" to="." method="_on__damage_area_area_entered"]

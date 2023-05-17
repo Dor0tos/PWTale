@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt0en6xbswtmt"]
+
+[ext_resource type="Texture2D" uid="uid://d2d2wqc4phsav" path="res://assets/sprites/attack_obj/egg.png" id="1_f45a5"]
+[ext_resource type="Script" path="res://assets/objects/attack_objects/egg.gd" id="1_kgq0c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ry15m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_220he"]
+radius = 3.0
+height = 8.0
+
+[node name="Egg" type="RigidBody2D"]
+gravity_scale = 0.2
+script = ExtResource("1_kgq0c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ry15m")
+disabled = true
+
+[node name="Egg" type="Sprite2D" parent="."]
+texture = ExtResource("1_f45a5")
+
+[node name="_damage_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="_damage_area"]
+shape = SubResource("CapsuleShape2D_220he")
+debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
+
+[connection signal="area_entered" from="_damage_area" to="." method="_on__damage_area_area_entered"]

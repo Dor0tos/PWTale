@@ -1,0 +1,447 @@
+[gd_scene load_steps=17 format=3 uid="uid://ds4bo0jse2578"]
+
+[ext_resource type="Script" path="res://scripts/pw_good.gd" id="1_81pb7"]
+[ext_resource type="Texture2D" uid="uid://dll1jk50ob2ql" path="res://assets/sprites/pwgood_emotes.png" id="1_k4lbu"]
+[ext_resource type="Texture2D" uid="uid://cr0taopykvb11" path="res://assets/sprites/pwhat.png" id="2_cydow"]
+[ext_resource type="Texture2D" uid="uid://b3x7jexjan31l" path="res://assets/sprites/knife_attack_outline.png" id="3_m0wmj"]
+[ext_resource type="Texture2D" uid="uid://bhqijvfmr7uhn" path="res://assets/sprites/text_bubble.png" id="4_00fpr"]
+[ext_resource type="AudioStream" uid="uid://clv3tirngacmf" path="res://assets/sounds/undertale/snd_laz.wav" id="5_rpfvh"]
+[ext_resource type="AudioStream" uid="uid://bjcg6dsdfxer7" path="res://assets/sounds/snd_damage.wav" id="6_7ambq"]
+[ext_resource type="FontFile" uid="uid://doqq6skoyi5e2" path="res://assets/fonts/hachicro.TTF" id="8_4tuc3"]
+[ext_resource type="PackedScene" uid="uid://cs1655lkuuo6y" path="res://assets/objects/PWGood_Death.tscn" id="9_y4ofv"]
+
+[sub_resource type="Animation" id="Animation_ulvdb"]
+resource_name = "Cringe"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PWBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_ghff1"]
+resource_name = "Hit"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Knife:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Knife:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PWBody:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(20, 0), Vector2(-18, 0), Vector2(16, 0), Vector2(-10, 0), Vector2(6, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PWBody:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hat:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(20, 6), Vector2(-18, 6), Vector2(16, 6), Vector2(-10, 6), Vector2(6, 6), Vector2(-2, 6), Vector2(0, 6)]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_rpfvh")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_7ambq")
+}],
+"times": PackedFloat32Array(0, 0.7)
+}
+tracks/5/use_blend = true
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Damage_Label:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-49, -0.25, 0, 0.25, 0, -49, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1.2)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Damage_Label:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-61.5, -0.25, 0, 0.2, -25.5, -61.5, -0.2, -26.5, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1.2)
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Damage_Label:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animate_health"
+}]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hit_face"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_q6hvq"]
+resource_name = "RESET"
+length = 2.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PWBody:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.5, -25, 1, 25, 0.5, -1, -25, 1, 25, -0.5, -1, -25, 1, 25),
+"times": PackedFloat32Array(0, 2, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hat:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-2.326, -0.25, 0, 0.0625, 0.71375, 0, -0.05, -0.997616, 0.95, 24.0662, -2.32585, -0.9, -19.4508, 0, 2),
+"times": PackedFloat32Array(0, 0.15, 2)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PWBody:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hat:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Knife:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Knife:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PWBody:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Damage_Label:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-49, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Damage_Label:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-77, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Damage_Label:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_a07sh"]
+resource_name = "Talk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3aibi"]
+_data = {
+"Cringe": SubResource("Animation_ulvdb"),
+"Hit": SubResource("Animation_ghff1"),
+"RESET": SubResource("Animation_q6hvq"),
+"Talk": SubResource("Animation_a07sh")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pukng"]
+bg_color = Color(0.278431, 0.278431, 0.278431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7ol3"]
+bg_color = Color(0.278431, 1, 0.278431, 1)
+
+[node name="PWGood" type="Node2D"]
+script = ExtResource("1_81pb7")
+
+[node name="PWBody" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_k4lbu")
+hframes = 4
+vframes = 5
+region_rect = Rect2(112, 48, 32, 32)
+
+[node name="Knife" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_m0wmj")
+hframes = 6
+
+[node name="Hat" type="Node2D" parent="."]
+position = Vector2(-2.326, 6)
+
+[node name="PWHat_Back" type="Sprite2D" parent="Hat"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_cydow")
+hframes = 2
+vframes = 2
+frame = 2
+region_rect = Rect2(112, 48, 32, 32)
+
+[node name="PWHat_Front" type="Sprite2D" parent="Hat"]
+z_index = 2
+position = Vector2(0, -48)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_cydow")
+hframes = 2
+vframes = 2
+region_rect = Rect2(112, 48, 32, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3aibi")
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
+clip_contents = false
+offset_left = 51.0
+offset_top = -39.0
+offset_right = 171.0
+offset_bottom = 15.0
+size_flags_vertical = 6
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Тестовый текст"
+scroll_active = false
+
+[node name="Timer" type="Timer" parent="RichTextLabel"]
+wait_time = 0.05
+autostart = true
+
+[node name="MarginContainer" type="MarginContainer" parent="RichTextLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -5
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = -5
+theme_override_constants/margin_bottom = -5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="RichTextLabel/MarginContainer"]
+z_index = -1
+layout_mode = 2
+texture = ExtResource("4_00fpr")
+patch_margin_left = 6
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 6
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 6
+
+[node name="Damage_Label" type="Label" parent="."]
+visible = false
+z_index = 10
+custom_minimum_size = Vector2(100, 0)
+offset_left = -49.0
+offset_top = -77.0
+offset_right = 51.0
+offset_bottom = -58.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_4tuc3")
+text = "420"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Health_back" type="Panel" parent="."]
+visible = false
+offset_left = -50.0
+offset_top = 26.0
+offset_right = 50.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pukng")
+
+[node name="Health_front" type="Panel" parent="Health_back"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 100.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f7ol3")
+
+[node name="PWGood_Death" parent="." instance=ExtResource("9_y4ofv")]
+visible = false
+position = Vector2(0, 24)
+scale = Vector2(1.5, 1.5)
+
+[connection signal="timeout" from="RichTextLabel/Timer" to="." method="_on_timer_timeout"]

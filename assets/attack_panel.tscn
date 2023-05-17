@@ -1,0 +1,206 @@
+[gd_scene load_steps=13 format=3 uid="uid://5dp34btieowo"]
+
+[ext_resource type="Texture2D" uid="uid://brlwye5pc3qjx" path="res://assets/sprites/battle_eye.png" id="1_gxowg"]
+[ext_resource type="Script" path="res://scripts/attack_panel.gd" id="1_nkruh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmhbb"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwh8g"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_st4p3"]
+size = Vector2(2, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnpxj"]
+size = Vector2(174, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsrll"]
+size = Vector2(90, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxv0k"]
+size = Vector2(18, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pe4qj"]
+size = Vector2(4, 75)
+
+[sub_resource type="Animation" id="Animation_75frh"]
+resource_name = "RESET"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack_Marker:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-6, -0.25, 0, 0.6, 153.5, 248, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack_Marker:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack_Marker:theme_override_styles/panel:border_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack_Marker:theme_override_styles/panel:bg_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6ovu7"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack_Marker:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack_Marker:theme_override_styles/panel:border_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nbqse"]
+_data = {
+"RESET": SubResource("Animation_75frh"),
+"attack": SubResource("Animation_6ovu7")
+}
+
+[node name="Attack Panel" type="Control"]
+process_priority = -1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -136.0
+offset_bottom = -141.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nkruh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gmhbb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_gxowg")
+stretch_mode = 5
+
+[node name="Attack_Marker" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -3.0
+offset_bottom = 78.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mwh8g")
+
+[node name="Marker" type="Area2D" parent="Attack_Marker"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Marker/Marker"]
+position = Vector2(3, 40.5)
+shape = SubResource("RectangleShape2D_st4p3")
+
+[node name="Area_Low" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Low"]
+position = Vector2(124, 37.5)
+shape = SubResource("RectangleShape2D_fnpxj")
+debug_color = Color(0.972549, 0.168627, 0, 0.419608)
+
+[node name="Area_Med" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Med"]
+position = Vector2(124, 37.5)
+shape = SubResource("RectangleShape2D_xsrll")
+debug_color = Color(0.701961, 0.490196, 0, 0.419608)
+
+[node name="Area_High" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_High"]
+position = Vector2(124, 37.5)
+shape = SubResource("RectangleShape2D_lxv0k")
+debug_color = Color(0.376471, 0.611765, 0, 0.419608)
+
+[node name="Area_Perfect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Perfect"]
+position = Vector2(124, 37.5)
+shape = SubResource("RectangleShape2D_pe4qj")
+debug_color = Color(0, 0.627451, 0.490196, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_nbqse")
+}
+
+[connection signal="area_entered" from="Attack_Marker/Marker" to="." method="_on_marker_area_entered"]
+[connection signal="area_exited" from="Attack_Marker/Marker" to="." method="_on_marker_area_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

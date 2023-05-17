@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0chvtpyrw4fw"]
+
+[ext_resource type="Script" path="res://AnimTreeDebug.gd" id="1_kkgly"]
+
+[node name="AnimTreeDebug" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kkgly")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.47451)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 86.0
+offset_bottom = 26.0
+text = "x: 0"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 16.0
+offset_right = 86.0
+offset_bottom = 42.0
+text = "y: 0"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 19.0
+offset_right = 21.0
+offset_bottom = 21.0
+pivot_offset = Vector2(1, 1)

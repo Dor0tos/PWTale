@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://brmp4ihhybvpd"]
+
+[ext_resource type="Texture2D" uid="uid://b32dotyrv6o4f" path="res://assets/sprites/attack_obj/europe.png" id="1_7u4lb"]
+[ext_resource type="Script" path="res://assets/objects/attack_objects/geoguesser.gd" id="1_hlq4d"]
+[ext_resource type="Texture2D" uid="uid://duwm67if7fl05" path="res://assets/sprites/attack_obj/asia.png" id="2_h7kou"]
+[ext_resource type="Texture2D" uid="uid://xpsbyye3kbox" path="res://assets/sprites/attack_obj/australia.png" id="3_p88cf"]
+[ext_resource type="Texture2D" uid="uid://bj54ipsaki1dv" path="res://assets/sprites/attack_obj/africa.png" id="4_anty7"]
+[ext_resource type="Texture2D" uid="uid://cq1a058ehcelr" path="res://assets/sprites/attack_obj/south_ameriaca.png" id="5_6gbv0"]
+[ext_resource type="Texture2D" uid="uid://dpgtaddsnd0hl" path="res://assets/sprites/attack_obj/north_america.png" id="6_pqi2f"]
+[ext_resource type="Texture2D" uid="uid://rimgwjj3w1ci" path="res://assets/sprites/attack_obj/greenlang.png" id="7_mdj8p"]
+
+[node name="Geoguesser" type="Node2D"]
+script = ExtResource("1_hlq4d")
+HighlightColor = Color(0.141176, 0.619608, 0.870588, 1)
+
+[node name="Europe" type="Sprite2D" parent="."]
+position = Vector2(2, -15)
+texture = ExtResource("1_7u4lb")
+
+[node name="zone_area" type="Area2D" parent="Europe"]
+
+[node name="Collision" type="CollisionPolygon2D" parent="Europe/zone_area"]
+position = Vector2(-10.5, -8)
+polygon = PackedVector2Array(2, 14, 4, 14, 4, 12, 8, 12, 8, 14, 11, 14, 11, 13, 13, 13, 13, 11, 16, 11, 16, 12, 22, 12, 22, 11, 21, 11, 21, 10, 22, 10, 22, 9, 21, 9, 21, 8, 22, 8, 22, 5, 21, 5, 20, 4, 20, 3, 13, 3, 12, 2, 10, 2, 8, 3, 6, 5, 6, 6, 5, 8, 2, 11)
+
+[node name="Collision2" type="CollisionPolygon2D" parent="Europe/zone_area"]
+position = Vector2(-10.5, -8)
+polygon = PackedVector2Array(2, 9, 4, 9, 4, 6, 3, 6, 2, 7)
+
+[node name="Collision3" type="CollisionPolygon2D" parent="Europe/zone_area"]
+position = Vector2(-10.5, -8)
+polygon = PackedVector2Array(-1, 5, 0, 7, 0, 8, 1, 8, 1, 4, -1, 4)
+
+[node name="Asia" type="Sprite2D" parent="."]
+position = Vector2(22, -7)
+texture = ExtResource("2_h7kou")
+
+[node name="zone_area" type="Area2D" parent="Asia"]
+
+[node name="Collision" type="CollisionPolygon2D" parent="Asia/zone_area"]
+position = Vector2(-10.5, -8)
+polygon = PackedVector2Array(-8, 6, -8, 5, -7, 5, -7, 4, -5, 4, -5, 5, -4, 5, -4, 4, 2, 4, 2, 3, 1, 3, 1, 2, 2, 2, 2, 1, 1, 1, 1, 0, 2, 0, 2, -3, 1, -3, 0, -4, 0, -6, 3, -6, 4, -7, 10, -7, 21, -6, 29, -5, 28, 1, 28, 3, 28, 5, 26, 7, 23, 7, 21, 11, 19, 16, 16, 17, 15, 17, 15, 14, 10, 16, 8, 16, 5, 10, 3, 12, 1, 14, -3, 14, -3, 12, -4, 12, -4, 10, -5, 10, -5, 6)
+
+[node name="Collision2" type="CollisionPolygon2D" parent="Asia/zone_area"]
+position = Vector2(-10.5, -8)
+polygon = PackedVector2Array(15, 18, 15, 19, 17, 22, 19, 23, 24, 23, 25, 18, 25, 16, 23, 13, 22, 13, 20, 18)
+
+[node name="Australia" type="Sprite2D" parent="."]
+position = Vector2(40, 13)
+texture = ExtResource("3_p88cf")
+
+[node name="zone_area" type="Area2D" parent="Australia"]
+
+[node name="Collision" type="CollisionPolygon2D" parent="Australia/zone_area"]
+position = Vector2(-10.5, -8)
+polygon = PackedVector2Array(1, 8, 1, 10, 2, 12, 8, 15, 15, 16, 17, 16, 20, 14, 20, 13, 14, 2, 12, 0, 9, 0, 8, 3, 6, 4, 4, 6, 2, 7)
+
+[node name="SouthAmeriaca" type="Sprite2D" parent="."]
+position = Vector2(-23.5, 12)
+texture = ExtResource("5_6gbv0")
+
+[node name="zone_area" type="Area2D" parent="SouthAmeriaca"]
+
+[node name="Collision" type="CollisionPolygon2D" parent="SouthAmeriaca/zone_area"]
+position = Vector2(-10.5, -8)
+polygon = PackedVector2Array(10.5, 20, 9.5, 20, 8.5, 19, 7.5, 16, 6.5, 10, 5.5, 7, 4.5, 6, 3.5, 4, 3.5, 0, 4.5, -3, 5.5, -4, 7.5, -4, 10.5, -3, 12.5, -2, 13.5, 0, 16.5, 1, 17.5, 2, 17.5, 5, 16.5, 9, 15.5, 11, 11.5, 15, 10.5, 18)
+
+[node name="NorthAmerica" type="Sprite2D" parent="."]
+position = Vector2(-34.5, -11)
+texture = ExtResource("6_pqi2f")
+
+[node name="zone_area" type="Area2D" parent="NorthAmerica"]
+
+[node name="Collision" type="CollisionPolygon2D" parent="NorthAmerica/zone_area"]
+position = Vector2(-10.5, -8)
+polygon = PackedVector2Array(14.5, 21, 13.5, 18, 14.5, 16, 17.5, 17, 19.5, 17, 19.5, 16, 16.5, 15, 15.5, 14, 16.5, 12, 17.5, 11, 19.5, 9, 22.5, 6, 25.5, 6, 25.5, 4, 24.5, 2, 25.5, 0, 25.5, -2, 22.5, -2, 21.5, -4, 20.5, -5, 19.5, -5, 18.5, -4, 14.5, -4, 13.5, -5, 8.5, -5, 5.5, -4, 3.5, -2, 1.5, -1, -1.5, 1, -3.5, 2, -4.5, 3, -4.5, 4, -3.5, 4, -0.5, 3, 3.5, 3, 4.5, 4, 3.5, 8, 3.5, 14, 4.5, 16, 6.5, 17, 8.5, 18, 11.5, 19, 13.5, 21)
+
+[node name="Greenland" type="Sprite2D" parent="."]
+position = Vector2(-15, -20.5)
+texture = ExtResource("7_mdj8p")
+
+[node name="zone_area" type="Area2D" parent="Greenland"]
+
+[node name="Collision" type="CollisionPolygon2D" parent="Greenland/zone_area"]
+position = Vector2(-10.5, -8)
+polygon = PackedVector2Array(3, 6.5, 7, 6.5, 7, 7.5, 8, 9.5, 9, 11.5, 11, 11.5, 13, 10.5, 14, 9.5, 16, 8.5, 18, 6.5, 18, 4.5, 10, 4.5, 5, 4.5, 3, 5.5)
+
+[node name="Africa" type="Sprite2D" parent="."]
+position = Vector2(0.5, 4)
+texture = ExtResource("4_anty7")
+
+[node name="Africa" type="Area2D" parent="Africa"]
+
+[node name="Collision" type="CollisionPolygon2D" parent="Africa/Africa"]
+position = Vector2(-10.5, -8)
+polygon = PackedVector2Array(2.5, 7, 0.5, 6, -0.5, 4, -0.5, 0, 3.5, -4, 5.5, -5, 8.5, -5, 9.5, -3, 16.5, -3, 16.5, 0, 17.5, 0, 17.5, 3, 18.5, 3, 18.5, 4, 19.5, 4, 19.5, 5, 21.5, 5, 21.5, 17, 20.5, 18, 14.5, 21, 11.5, 21, 10.5, 20, 9.5, 17, 8.5, 11, 8.5, 7)
+
+[connection signal="area_entered" from="Europe/zone_area" to="." method="Zone_entered" binds= ["Europe"]]
+[connection signal="area_exited" from="Europe/zone_area" to="." method="Zone_exited" binds= ["Europe"]]
+[connection signal="area_entered" from="Asia/zone_area" to="." method="Zone_entered" binds= ["Asia"]]
+[connection signal="area_exited" from="Asia/zone_area" to="." method="Zone_exited" binds= ["Asia"]]
+[connection signal="area_entered" from="Australia/zone_area" to="." method="Zone_entered" binds= ["Australia"]]
+[connection signal="area_exited" from="Australia/zone_area" to="." method="Zone_exited" binds= ["Australia"]]
+[connection signal="area_entered" from="SouthAmeriaca/zone_area" to="." method="Zone_entered" binds= ["SouthAmeriaca"]]
+[connection signal="area_exited" from="SouthAmeriaca/zone_area" to="." method="Zone_exited" binds= ["SouthAmeriaca"]]
+[connection signal="area_entered" from="NorthAmerica/zone_area" to="." method="Zone_entered" binds= ["NorthAmerica"]]
+[connection signal="area_exited" from="NorthAmerica/zone_area" to="." method="Zone_exited" binds= ["NorthAmerica"]]
+[connection signal="area_entered" from="Greenland/zone_area" to="." method="Zone_entered" binds= ["Greenland"]]
+[connection signal="area_exited" from="Greenland/zone_area" to="." method="Zone_exited" binds= ["Greenland"]]
+[connection signal="area_entered" from="Africa/Africa" to="." method="Zone_entered" binds= ["Africa"]]
+[connection signal="area_exited" from="Africa/Africa" to="." method="Zone_exited" binds= ["Africa"]]

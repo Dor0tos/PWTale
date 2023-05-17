@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcofafwt6ub7p"]
+
+[ext_resource type="Texture2D" uid="uid://ca2yjxxrsorvs" path="res://assets/floor.png" id="1_vb6xr"]
+[ext_resource type="PackedScene" uid="uid://c5vjjbkguyikt" path="res://assets/gneg.tscn" id="2_xlq3m"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(250, 103)
+texture = ExtResource("1_vb6xr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Gneg" parent="CanvasLayer" instance=ExtResource("2_xlq3m")]
+position = Vector2(188, 83)

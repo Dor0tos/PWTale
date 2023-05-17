@@ -1,0 +1,134 @@
+[gd_scene load_steps=14 format=3 uid="uid://cxld2m0fhnd0d"]
+
+[ext_resource type="Script" path="res://scripts/Batlle_Background.gd" id="1_ulr04"]
+[ext_resource type="Shader" path="res://sine_movement.gdshader" id="2_4qi1o"]
+[ext_resource type="Texture2D" uid="uid://dw55ccegxl2t6" path="res://assets/sprites/background_fight_1.png" id="4_3iiy8"]
+[ext_resource type="Texture2D" uid="uid://dhfk1ubaos6fm" path="res://assets/sprites/background_fight_2.png" id="5_tn80p"]
+[ext_resource type="Texture2D" uid="uid://cq7bboo5cwp13" path="res://assets/sprites/background_fight_3.png" id="6_et5nh"]
+[ext_resource type="Texture2D" uid="uid://ctbd3n0n47cxx" path="res://assets/sprites/background_fight_4.png" id="7_n1upe"]
+[ext_resource type="Texture2D" uid="uid://b47fftkgxk3to" path="res://assets/sprites/background_fight_5.png" id="8_f2x4r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mf58f"]
+shader = ExtResource("2_4qi1o")
+shader_parameter/period = 2.5
+shader_parameter/amplitude = 5.0
+shader_parameter/phase_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s678b"]
+shader = ExtResource("2_4qi1o")
+shader_parameter/period = 2.5
+shader_parameter/amplitude = 5.0
+shader_parameter/phase_offset = 72.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m6sd5"]
+shader = ExtResource("2_4qi1o")
+shader_parameter/period = 2.5
+shader_parameter/amplitude = 5.0
+shader_parameter/phase_offset = 144.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jau2u"]
+shader = ExtResource("2_4qi1o")
+shader_parameter/period = 2.5
+shader_parameter/amplitude = 5.0
+shader_parameter/phase_offset = 216.0
+
+[sub_resource type="Shader" id="Shader_n4w2j"]
+code = "shader_type canvas_item;
+
+uniform float period : hint_range(0.5, 5.0, 0.1);
+uniform float amplitude : hint_range(0, 50, 1);
+uniform float phase_offset : hint_range(0.0, 360.0, 0.01);
+
+void vertex() {
+	VERTEX += vec2(0, amplitude * sin(TIME * PI / period + phase_offset * PI / 180.0));
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c3r46"]
+shader = SubResource("Shader_n4w2j")
+shader_parameter/period = 2.5
+shader_parameter/amplitude = 5.0
+shader_parameter/phase_offset = 288.0
+
+[node name="Batlle_Background" type="Node2D"]
+script = ExtResource("1_ulr04")
+
+[node name="BackgroundFight_R1" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_mf58f")
+offset_left = 35.0
+offset_top = -36.0
+offset_right = 54.0
+offset_bottom = 37.0
+texture = ExtResource("4_3iiy8")
+
+[node name="BackgroundFight_R2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_s678b")
+offset_left = 53.0
+offset_top = -36.0
+offset_right = 72.0
+offset_bottom = 37.0
+texture = ExtResource("5_tn80p")
+
+[node name="BackgroundFight_R3" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_m6sd5")
+offset_left = 71.0
+offset_top = -36.0
+offset_right = 90.0
+offset_bottom = 37.0
+texture = ExtResource("6_et5nh")
+
+[node name="BackgroundFight_R4" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_jau2u")
+offset_left = 89.0
+offset_top = -36.0
+offset_right = 108.0
+offset_bottom = 37.0
+texture = ExtResource("7_n1upe")
+
+[node name="BackgroundFight_R5" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_c3r46")
+offset_left = 107.0
+offset_top = -36.0
+offset_right = 126.0
+offset_bottom = 37.0
+texture = ExtResource("8_f2x4r")
+
+[node name="BackgroundFight_R6" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_mf58f")
+offset_left = -54.0
+offset_top = -36.0
+offset_right = -35.0
+offset_bottom = 37.0
+texture = ExtResource("4_3iiy8")
+
+[node name="BackgroundFight_R7" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_s678b")
+offset_left = -72.0
+offset_top = -36.0
+offset_right = -53.0
+offset_bottom = 37.0
+texture = ExtResource("5_tn80p")
+
+[node name="BackgroundFight_R8" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_m6sd5")
+offset_left = -90.0
+offset_top = -36.0
+offset_right = -71.0
+offset_bottom = 37.0
+texture = ExtResource("6_et5nh")
+
+[node name="BackgroundFight_R9" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_jau2u")
+offset_left = -108.0
+offset_top = -36.0
+offset_right = -89.0
+offset_bottom = 37.0
+texture = ExtResource("7_n1upe")
+
+[node name="BackgroundFight_R10" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_c3r46")
+offset_left = -126.0
+offset_top = -36.0
+offset_right = -107.0
+offset_bottom = 37.0
+texture = ExtResource("8_f2x4r")

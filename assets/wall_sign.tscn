@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1guyr3aq3o6d"]
+
+[ext_resource type="Script" path="res://scripts/wall_sign.gd" id="1_dtywc"]
+[ext_resource type="Texture2D" uid="uid://bcpwtrnxjl2le" path="res://assets/wall_sign.png" id="1_nprv5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1tgj"]
+size = Vector2(9, 20)
+
+[node name="WallSign" type="Node2D"]
+script = ExtResource("1_dtywc")
+
+[node name="WallSign" type="Sprite2D" parent="."]
+texture = ExtResource("1_nprv5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 10)
+shape = SubResource("RectangleShape2D_q1tgj")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

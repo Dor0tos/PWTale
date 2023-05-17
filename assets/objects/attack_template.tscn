@@ -1,0 +1,410 @@
+[gd_scene load_steps=26 format=3 uid="uid://cbknaoyvfux8h"]
+
+[ext_resource type="Texture2D" uid="uid://besq67knta6qf" path="res://assets/sprites/soul.png" id="1_w7s7v"]
+[ext_resource type="Script" path="res://scripts/attack_template.gd" id="1_yksvb"]
+[ext_resource type="Script" path="res://scripts/Soul.gd" id="2_58rlc"]
+[ext_resource type="AudioStream" uid="uid://d4ju32nfqxdor" path="res://assets/sounds/snd_hurt1.wav" id="4_b6n75"]
+[ext_resource type="AudioStream" uid="uid://0q66cea1620h" path="res://assets/sounds/undertale/snd_heal_c.wav" id="5_1di7w"]
+[ext_resource type="AudioStream" uid="uid://dke1gwsxhb3f4" path="res://assets/sounds/snd_bell.wav" id="6_vglpa"]
+[ext_resource type="StyleBox" uid="uid://wph3vberlk08" path="res://assets/debug/styles/button_ready_idle.tres" id="6_xnohb"]
+[ext_resource type="StyleBox" uid="uid://b77n8fr08feih" path="res://assets/debug/styles/button_ready_hover.tres" id="7_g0pfk"]
+[ext_resource type="StyleBox" uid="uid://jt35k103i2ht" path="res://assets/debug/styles/button_ready_press.tres" id="8_l4hhs"]
+[ext_resource type="StyleBox" uid="uid://dah0qg7ykbt1d" path="res://assets/debug/styles/button_ready_focus.tres" id="9_p6mwa"]
+
+[sub_resource type="Curve" id="Curve_euwev"]
+_data = [Vector2(0, 0.5), 0.0, 0.5, 0, 0, Vector2(0.3, 0.8), 1.1644, 1.1644, 0, 0, Vector2(1, 1), -0.0587976, 0.523549, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_nefus"]
+
+[sub_resource type="Curve" id="Curve_37w3g"]
+_data = [Vector2(0, 0.5), 0.0, -1.763, 0, 0, Vector2(0.25, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjpg0"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gi4bg"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7fd0"]
+size = Vector2(246.962, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_geii7"]
+size = Vector2(2, 71)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1ce7"]
+bg_color = Color(0, 0.576471, 0.909804, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_keh5d"]
+size = Vector2(7, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gk81h"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_1txtf"]
+resource_name = "Damage"
+length = 2.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sound_player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_b6n75")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Soul:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o3t16"]
+resource_name = "Heal"
+length = 0.5
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sound_player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_1di7w")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_cn2yk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soul:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3w7pt"]
+resource_name = "geo_begin"
+length = 0.47
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sound_player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_vglpa")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e0yuf"]
+_data = {
+"Damage": SubResource("Animation_1txtf"),
+"Heal": SubResource("Animation_o3t16"),
+"RESET": SubResource("Animation_cn2yk"),
+"geo_begin": SubResource("Animation_3w7pt")
+}
+
+[node name="Attack_Template" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -384.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yksvb")
+translation_duration = 0.51
+Pistons_speed = 64.0
+Pistons_difficulty = SubResource("Curve_euwev")
+TNT_difficulty = SubResource("Curve_nefus")
+Detonation_time = 0.25
+Tnt_period = 0.5
+Dispencer_difficulty = SubResource("Curve_37w3g")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -37.5
+offset_right = 124.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tjpg0")
+
+[node name="Borders" type="Panel" parent="Panel"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gi4bg")
+
+[node name="Border" type="StaticBody2D" parent="Panel"]
+
+[node name="Collision_1" type="CollisionShape2D" parent="Panel/Border"]
+position = Vector2(124, 1)
+shape = SubResource("RectangleShape2D_o7fd0")
+
+[node name="Collision_2" type="CollisionShape2D" parent="Panel/Border"]
+position = Vector2(124, 74)
+shape = SubResource("RectangleShape2D_o7fd0")
+
+[node name="Collision_3" type="CollisionShape2D" parent="Panel/Border"]
+position = Vector2(1, 37.5)
+shape = SubResource("RectangleShape2D_geii7")
+
+[node name="Collision_4" type="CollisionShape2D" parent="Panel/Border"]
+position = Vector2(247, 37)
+shape = SubResource("RectangleShape2D_geii7")
+
+[node name="Attack_Container" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l1ce7")
+
+[node name="Attack_Container_Clip" type="Panel" parent="Panel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l1ce7")
+
+[node name="Collision_Area" type="Area2D" parent="Panel"]
+z_index = 15
+
+[node name="Collision_1" type="CollisionShape2D" parent="Panel/Collision_Area"]
+position = Vector2(124, 1)
+shape = SubResource("RectangleShape2D_o7fd0")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[node name="Collision_3" type="CollisionShape2D" parent="Panel/Collision_Area"]
+position = Vector2(1, 37.5)
+shape = SubResource("RectangleShape2D_geii7")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[node name="Collision_4" type="CollisionShape2D" parent="Panel/Collision_Area"]
+position = Vector2(247, 37)
+shape = SubResource("RectangleShape2D_geii7")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[node name="Bottom_Area" type="Area2D" parent="Panel"]
+z_index = 15
+
+[node name="Collision" type="CollisionShape2D" parent="Panel/Bottom_Area"]
+position = Vector2(124, 74)
+shape = SubResource("RectangleShape2D_o7fd0")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[node name="Soul" type="CharacterBody2D" parent="."]
+motion_mode = 1
+script = ExtResource("2_58rlc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Soul"]
+shape = SubResource("RectangleShape2D_keh5d")
+
+[node name="Soul" type="Sprite2D" parent="Soul"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_w7s7v")
+
+[node name="SoulDamage_area" type="Area2D" parent="Soul"]
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="Soul/SoulDamage_area"]
+shape = SubResource("RectangleShape2D_keh5d")
+
+[node name="_geoguesser_area" type="Area2D" parent="Soul"]
+position = Vector2(0, -0.5)
+
+[node name="Shape" type="CollisionShape2D" parent="Soul/_geoguesser_area"]
+shape = SubResource("RectangleShape2D_gk81h")
+debug_color = Color(1, 1, 1, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e0yuf")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sound_player" type="AudioStreamPlayer2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 384.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("6_xnohb")
+theme_override_styles/hover = ExtResource("7_g0pfk")
+theme_override_styles/pressed = ExtResource("8_l4hhs")
+theme_override_styles/focus = ExtResource("9_p6mwa")
+text = "Поршни"
+alignment = 0
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("6_xnohb")
+theme_override_styles/hover = ExtResource("7_g0pfk")
+theme_override_styles/pressed = ExtResource("8_l4hhs")
+theme_override_styles/focus = ExtResource("9_p6mwa")
+text = "Слизь"
+alignment = 0
+
+[node name="Button3" type="Button" parent="CanvasLayer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("6_xnohb")
+theme_override_styles/hover = ExtResource("7_g0pfk")
+theme_override_styles/pressed = ExtResource("8_l4hhs")
+theme_override_styles/focus = ExtResource("9_p6mwa")
+text = "ТНТ"
+alignment = 0
+
+[node name="Button4" type="Button" parent="CanvasLayer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("6_xnohb")
+theme_override_styles/hover = ExtResource("7_g0pfk")
+theme_override_styles/pressed = ExtResource("8_l4hhs")
+theme_override_styles/focus = ExtResource("9_p6mwa")
+text = "Яйца"
+alignment = 0
+
+[node name="Button5" type="Button" parent="CanvasLayer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("6_xnohb")
+theme_override_styles/hover = ExtResource("7_g0pfk")
+theme_override_styles/pressed = ExtResource("8_l4hhs")
+theme_override_styles/focus = ExtResource("9_p6mwa")
+text = "Трезубцы"
+alignment = 0
+
+[node name="Button7" type="Button" parent="CanvasLayer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("6_xnohb")
+theme_override_styles/hover = ExtResource("7_g0pfk")
+theme_override_styles/pressed = ExtResource("8_l4hhs")
+theme_override_styles/focus = ExtResource("9_p6mwa")
+text = "Маяк"
+alignment = 0
+
+[node name="Button6" type="Button" parent="CanvasLayer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+disabled = true
+text = "Пепе"
+alignment = 0
+
+[node name="Button9" type="Button" parent="CanvasLayer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Раздатчики"
+alignment = 0
+
+[node name="Button8" type="Button" parent="CanvasLayer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Геогесер"
+alignment = 0
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+focus_mode = 0
+value = 30.0
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+text = "%d %"
+
+[connection signal="area_entered" from="Soul/SoulDamage_area" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Soul/SoulDamage_area" to="." method="_on_collision_area_area_exited"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer3/VBoxContainer/Button" to="." method="_on_button_pressed" binds= [0]]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer3/VBoxContainer/Button2" to="." method="_on_button_pressed" binds= [1]]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer3/VBoxContainer/Button3" to="." method="_on_button_pressed" binds= [2]]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer3/VBoxContainer/Button4" to="." method="_on_button_pressed" binds= [3]]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer3/VBoxContainer/Button5" to="." method="_on_button_pressed" binds= [4]]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer3/VBoxContainer/Button7" to="." method="_on_button_pressed" binds= [5]]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer3/VBoxContainer/Button9" to="." method="_on_button_pressed" binds= [6]]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer3/VBoxContainer/Button8" to="." method="_on_button_pressed" binds= [7]]
+[connection signal="drag_ended" from="CanvasLayer/VBoxContainer3/VBoxContainer/HSlider" to="." method="_on_h_slider_drag_ended"]

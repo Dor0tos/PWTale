@@ -1,0 +1,140 @@
+[gd_scene load_steps=12 format=3 uid="uid://soi5mcsxl2m6"]
+
+[ext_resource type="Texture2D" uid="uid://28x5sq8qgtns" path="res://assets/sprites/attack_obj/piston.png" id="1_ad6rt"]
+[ext_resource type="Script" path="res://assets/objects/attack_objects/piston.gd" id="1_qr1qj"]
+[ext_resource type="AudioStream" uid="uid://co8vmvgt2dir8" path="res://assets/sounds/attack_sound/piston.wav" id="1_xkv0w"]
+
+[sub_resource type="Animation" id="Animation_wkg1q"]
+resource_name = "Close"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-13, 0), Vector2(-3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yxqj0"]
+resource_name = "Open"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-3, 0), Vector2(-13, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_xkv0w")
+}],
+"times": PackedFloat32Array(-0.2)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_crs7n"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8153l"]
+_data = {
+"Close": SubResource("Animation_wkg1q"),
+"Open": SubResource("Animation_yxqj0"),
+"RESET": SubResource("Animation_crs7n")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fn5r7"]
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehd8b"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80n3j"]
+size = Vector2(9, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljkkk"]
+size = Vector2(5, 16)
+
+[node name="piston" type="Node2D"]
+script = ExtResource("1_qr1qj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8153l")
+}
+
+[node name="Base" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(10, 0)
+texture = ExtResource("1_ad6rt")
+region_enabled = true
+region_rect = Rect2(16, 0, 12, 16)
+
+[node name="_damage_area" type="Area2D" parent="Base"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/_damage_area"]
+shape = SubResource("RectangleShape2D_fn5r7")
+
+[node name="Hand" type="Sprite2D" parent="Base"]
+z_index = -1
+position = Vector2(-3, 0)
+texture = ExtResource("1_ad6rt")
+region_enabled = true
+region_rect = Rect2(0, 0, 14, 16)
+
+[node name="Block" type="Sprite2D" parent="Base/Hand"]
+position = Vector2(-15, 0)
+texture = ExtResource("1_ad6rt")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="_damage_area" type="Area2D" parent="Base/Hand/Block"]
+position = Vector2(13, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Hand/Block/_damage_area"]
+position = Vector2(-13, 0)
+shape = SubResource("RectangleShape2D_ehd8b")
+
+[node name="_damage_area" type="Area2D" parent="Base/Hand"]
+position = Vector2(13, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Hand/_damage_area"]
+position = Vector2(-10.5, 0)
+shape = SubResource("RectangleShape2D_80n3j")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Base/Hand/_damage_area"]
+position = Vector2(-17.5, 0)
+shape = SubResource("RectangleShape2D_ljkkk")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

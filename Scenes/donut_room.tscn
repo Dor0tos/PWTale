@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://dftjpfgnhd7n"]
+
+[ext_resource type="Script" path="res://scripts/bedrock_room.gd" id="1_20tbv"]
+[ext_resource type="Texture2D" uid="uid://dh8cbrkh451gv" path="res://assets/empty_room.png" id="2_w5oid"]
+[ext_resource type="PackedScene" uid="uid://dev088yyptnqi" path="res://assets/objects/donut.tscn" id="3_78hdg"]
+[ext_resource type="PackedScene" uid="uid://c5vjjbkguyikt" path="res://assets/gneg.tscn" id="4_xx1n8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft51i"]
+size = Vector2(196, 101)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vt7rs"]
+size = Vector2(52, 246.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvg0e"]
+size = Vector2(130, 21.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qanpq"]
+size = Vector2(28, 20)
+
+[node name="Empty_room" type="CanvasLayer"]
+script = ExtResource("1_20tbv")
+
+[node name="World" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="World"]
+offset_left = -186.0
+offset_top = -20.0
+offset_right = 532.0
+offset_bottom = 424.0
+color = Color(0, 0, 0, 1)
+
+[node name="EmptyRoom" type="Sprite2D" parent="World"]
+position = Vector2(198, 107)
+texture = ExtResource("2_w5oid")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(196, 33.5)
+shape = SubResource("RectangleShape2D_ft51i")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(78, 106.75)
+shape = SubResource("RectangleShape2D_vt7rs")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(319, 109)
+shape = SubResource("RectangleShape2D_vt7rs")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(279, 221.625)
+shape = SubResource("RectangleShape2D_hvg0e")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(117, 222)
+shape = SubResource("RectangleShape2D_hvg0e")
+
+[node name="Area2D" type="Area2D" parent="World"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Area2D"]
+position = Vector2(198, 227)
+shape = SubResource("RectangleShape2D_qanpq")
+
+[node name="Donut" parent="World" node_paths=PackedStringArray("white_list_body") instance=ExtResource("3_78hdg")]
+position = Vector2(196, 112)
+white_list_body = NodePath("../Gneg")
+shown_text = PackedStringArray("(Это пончик...)")
+
+[node name="Gneg" parent="World" instance=ExtResource("4_xx1n8")]
+position = Vector2(199, 209)
+
+[node name="Camera2D" type="Camera2D" parent="World/Gneg"]
+limit_left = 0
+limit_top = -14
+limit_right = 383
+limit_bottom = 226
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[connection signal="body_entered" from="World/Area2D" to="." method="_on_area_2d_body_entered"]

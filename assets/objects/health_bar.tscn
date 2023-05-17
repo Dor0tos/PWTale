@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://j0sqqg5turwa"]
+
+[ext_resource type="FontFile" uid="uid://cfk1sf0ljh5yl" path="res://assets/fonts/crypt-of-tomorrow-ut-font-no-rus.ttf" id="1_n00qw"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="1_sltsu"]
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sltsu")
+Health_Cur = 15
+Health_Max = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = -3
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_n00qw")
+theme_override_font_sizes/font_size = 5
+text = "o3"
+
+[node name="Control" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MaxHealth_CR" type="ColorRect" parent="HBoxContainer/Control"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(1, 0, 0.0156863, 1)
+
+[node name="Cur_Health_CR" type="ColorRect" parent="HBoxContainer/Control"]
+custom_minimum_size = Vector2(5, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+color = Color(1, 1, 0.0156863, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 3
+
+[node name="Health_L" type="Label" parent="HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_n00qw")
+theme_override_font_sizes/font_size = 5
+text = "09/20"

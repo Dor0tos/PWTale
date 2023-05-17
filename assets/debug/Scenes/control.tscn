@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://njvfswgh68vb"]
+
+[ext_resource type="Script" path="res://assets/debug/Scenes/control.gd" id="1_48uqd"]
+[ext_resource type="Script" path="res://assets/debug/Debug/Dragable.gd" id="2_q8o1r"]
+[ext_resource type="Texture2D" uid="uid://45siotgdyp6d" path="res://assets/sprites/attack_obj/beakon_block.png" id="3_3hq84"]
+
+[sub_resource type="Animation" id="Animation_td68x"]
+resource_name = "RESET"
+length = 5.0
+loop_mode = 2
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ldn18"]
+_data = {
+"RESET": SubResource("Animation_td68x")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjqq2"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_e2kwi"]
+points = PackedVector2Array(0, 0, 50, 0, 50, 50)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_48uqd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ldn18")
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(113, 46)
+script = ExtResource("2_q8o1r")
+
+[node name="BeakonBlock" type="Sprite2D" parent="Node2D"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_3hq84")
+
+[node name="DragArea" type="Area2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/DragArea"]
+shape = SubResource("RectangleShape2D_bjqq2")
+debug_color = Color(0, 0.6, 0.701961, 0.0588235)
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(69, 79)
+
+[node name="DragArea" type="Area2D" parent="Node2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/DragArea"]
+shape = SubResource("ConvexPolygonShape2D_e2kwi")
+debug_color = Color(0.701961, 0.619608, 0, 0.419608)
