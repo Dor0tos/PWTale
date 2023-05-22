@@ -1,10 +1,13 @@
 extends Node2D
 
+@onready var pwgood_talk = preload("res://assets/sounds/pwgood_talk.mp3")
+@onready var epic_talk = preload("res://assets/sounds/undertale/snd_txtsans.wav")
+
 enum Faces {
 	PASSIVE_AGGRESSIVE = 0,
 	PASSIVE_AGGRESSIVE_TALK = 1,
 	CONFIDENT_TALK = 2,
-	SILENT = 3,
+	TIRED = 3,
 	HIT = 4,
 	FUNNY = 5,
 	GEOGUESSER = 6,
@@ -14,7 +17,8 @@ enum Faces {
 	DEAD = 12,
 	LAST_WORDS = 13,
 	LAST_WORDS_TALK = 14,
-	CRINGE = 7
+	CRINGE = 7,
+	SANS = 16
 }
 
 enum PWAnimation {
@@ -25,7 +29,7 @@ enum PWAnimation {
 @onready var is_text_shown = false
 @onready var health = 100
 @export var damage = 10
-const max_health = 250
+const max_health = 300
 signal text_shown
 signal bubble_done
 signal animation_finished
@@ -82,13 +86,23 @@ func hit_face():
 	else:
 		set_face(Faces.HIT)
 
+func miss_face():
+	set_face(Faces.SANS)
+
 func hit(damage : int):
 	health -= damage
-	$Damage_Label.text = str(damage)
-	$AnimationPlayer.play("Hit")
-	await $AnimationPlayer.animation_finished
-	$AnimationPlayer.play("RESET")
-	emit_signal("animation_finished")
+	if damage == 0:
+		$Damage_Label.text = "MISS"
+		$AnimationPlayer.play("Miss")
+		await $AnimationPlayer.animation_finished
+		$AnimationPlayer.play("RESET")
+		emit_signal("animation_finished")
+	else:
+		$Damage_Label.text = str(damage)
+		$AnimationPlayer.play("Hit")
+		await $AnimationPlayer.animation_finished
+		$AnimationPlayer.play("RESET")
+		emit_signal("animation_finished")
 
 func say(text):
 	$RichTextLabel.visible = true
@@ -97,10 +111,34 @@ func say(text):
 	$RichTextLabel.visible_characters = 0
 	$RichTextLabel/Timer.start()
 
+func say_epic(text):
+	$RichTextLabel.visible = true
+	is_text_shown = false
+	$RichTextLabel.text = "[shake]" + text
+	$RichTextLabel.visible_characters = 0
+	$RichTextLabel/Timer_Epic.start()
+
 func _on_timer_timeout():
 	$RichTextLabel.visible_characters += 1
 	apply_label_size()
+	$AudioStreamPlayer.stream = pwgood_talk
+	$AudioStreamPlayer.play()
 	if $RichTextLabel.visible_characters == $RichTextLabel.text.length():
 		emit_signal("text_shown")
 		is_text_shown = true
 		$RichTextLabel/Timer.stop()
+
+func strip_bbcode(text : String) -> String:
+	var regex = RegEx.new()
+	regex.compile("\\[.+?\\]")
+	return regex.sub(text, "", true)
+
+func _on_timer_epic_timeout():
+	$RichTextLabel.visible_characters += 1
+	apply_label_size()
+	$AudioStreamPlayer.stream = pwgood_talk
+	$AudioStreamPlayer.play()
+	if $RichTextLabel.visible_characters == strip_bbcode($RichTextLabel.text).length():
+		emit_signal("text_shown")
+		is_text_shown = true
+		$RichTextLabel/Timer_Epic.stop()

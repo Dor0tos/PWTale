@@ -137,4 +137,6 @@ shape = SubResource("RectangleShape2D_80n3j")
 position = Vector2(-17.5, 0)
 shape = SubResource("RectangleShape2D_ljkkk")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+volume_db = 12.0
+bus = &"Effects"

@@ -1,0 +1,87 @@
+[gd_scene load_steps=14 format=3 uid="uid://c81kpfi23uyfb"]
+
+[ext_resource type="Texture2D" uid="uid://befih1xy3e0jb" path="res://assets/sprites/experimant_screen.png" id="1_h1nb6"]
+[ext_resource type="Script" path="res://scripts/experiment.gd" id="1_rsxci"]
+[ext_resource type="Script" path="res://Scripts/wall_sign.gd" id="2_r0xbc"]
+[ext_resource type="Texture2D" uid="uid://dabawnb1qglad" path="res://assets/sprites/two_hole_screen.png" id="2_sh8ia"]
+[ext_resource type="Texture2D" uid="uid://bmd2hoav7outu" path="res://assets/sprites/lamp.png" id="3_cpk7f"]
+[ext_resource type="Script" path="res://scripts/Lamp.gd" id="5_w1m5g"]
+[ext_resource type="AudioStream" uid="uid://chwlmvb2cwqsw" path="res://assets/sounds/snd_switchpull_n.wav" id="7_qft7q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjfs0"]
+size = Vector2(73, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uso3a"]
+size = Vector2(43, 5.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crhr8"]
+size = Vector2(20, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x43en"]
+size = Vector2(10, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8g00"]
+size = Vector2(33, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpn4j"]
+size = Vector2(65, 36)
+
+[node name="Experiment" type="Node2D"]
+script = ExtResource("1_rsxci")
+
+[node name="ExperimantScreen" type="Sprite2D" parent="."]
+z_index = 15
+position = Vector2(0.5, 0)
+texture = ExtResource("1_h1nb6")
+hframes = 3
+script = ExtResource("2_r0xbc")
+shown_text = PackedStringArray("Большой белый экран, сделанный из пластика", "Кажется он нужен, чтобы на него падал свет из лампы")
+
+[node name="Area2D" type="Area2D" parent="ExperimantScreen"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExperimantScreen/Area2D"]
+position = Vector2(0, 16.5)
+shape = SubResource("RectangleShape2D_qjfs0")
+
+[node name="TwoHoleScreen" type="Sprite2D" parent="."]
+position = Vector2(0.5, 34)
+texture = ExtResource("2_sh8ia")
+script = ExtResource("2_r0xbc")
+shown_text = PackedStringArray("Это большой пластиковый лист с двумя щелями")
+
+[node name="Area2D" type="Area2D" parent="TwoHoleScreen"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TwoHoleScreen/Area2D"]
+position = Vector2(0, 8.25)
+shape = SubResource("RectangleShape2D_uso3a")
+
+[node name="Lamp" type="Sprite2D" parent="."]
+position = Vector2(0.5, 47)
+texture = ExtResource("3_cpk7f")
+hframes = 2
+script = ExtResource("5_w1m5g")
+
+[node name="Area2D" type="Area2D" parent="Lamp"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp/Area2D"]
+position = Vector2(-0.5, 12.5)
+shape = SubResource("RectangleShape2D_crhr8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 59.5)
+shape = SubResource("RectangleShape2D_x43en")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 34)
+shape = SubResource("RectangleShape2D_i8g00")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_fpn4j")
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_qft7q")
+
+[connection signal="state_changed" from="Lamp" to="." method="_on_lamp_state_changed"]

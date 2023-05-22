@@ -1,7 +1,7 @@
 extends Control
 
 @export_range(0.01, 10, 0.1) var translation_duration : float = 1.0
-@onready var diff = 0.3
+@onready var diff = Global.Start_Difficulty
 @export_range(0, 50, 1) var difficulty_modifier : int = 15
 
 @export_category("Attacks settings")
@@ -53,6 +53,7 @@ signal attack_finished
 
 func _ready():
 	_reset()
+	$CanvasLayer/VBoxContainer3/VBoxContainer/Button5.grab_focus()
 
 func _process(delta):
 	apply_areas()
@@ -294,8 +295,10 @@ func remove_cocks():
 
 func trident_attack(amount : int, difficulty : float):
 	var screen_size = Vector2(37, 75)
-	give_immortales(1.5)
 	apply_size(screen_size)
+	
+	create_tween().tween_property(soul, "position", Vector2(0, 60/2), 0.2)
+	
 	for i in range(amount + int(difficulty * 10)):
 		var trident = tident_obj.instantiate()
 		trident.gravity_scale = difficulty + 0.7

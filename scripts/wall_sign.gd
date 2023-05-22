@@ -2,12 +2,20 @@ extends Node2D
 
 const dialoge = preload("res://assets/text_window.tscn")
 
-@export var white_list_body : CharacterBody2D
 @export var shown_text : PackedStringArray
 
 var is_player_nearby : bool = false
 
-func _input(event):
+func _ready():
+	var area : Area2D
+	for node in get_children():
+		if node is Area2D:
+			area = node
+			break
+	area.connect("body_entered", _on_area_2d_body_entered)
+	area.connect("body_exited", _on_area_2d_body_exited)
+
+func _input(_event):
 	if Input.is_action_just_pressed("ui_accept") and is_player_nearby:
 		await get_tree().create_timer(0.01).timeout
 		var tw = dialoge.instantiate()
@@ -23,12 +31,12 @@ func _input(event):
 
 
 func _on_area_2d_body_entered(body):
-	if body != white_list_body:
+	if body.name != "Gneg":
 		return
 	is_player_nearby = true
 
 
 func _on_area_2d_body_exited(body):
-	if body != white_list_body:
+	if body.name != "Gneg":
 		return
 	is_player_nearby = false

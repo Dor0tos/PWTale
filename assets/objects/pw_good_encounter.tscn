@@ -1,0 +1,391 @@
+[gd_scene load_steps=13 format=3 uid="uid://vukde6lbnlnn"]
+
+[ext_resource type="Script" path="res://scripts/PWGood_encounter.gd" id="1_i65g2"]
+[ext_resource type="Texture2D" uid="uid://vohh2tx58i0d" path="res://assets/sprites/pwgood_smol.png" id="2_t6kf4"]
+[ext_resource type="Texture2D" uid="uid://b7px8sklj6k6y" path="res://assets/sprites/attention.png" id="3_avetf"]
+[ext_resource type="AudioStream" uid="uid://tk3bb7cm6j07" path="res://assets/sounds/snd_b.wav" id="4_qx5w7"]
+[ext_resource type="AudioStream" uid="uid://cxnlr4twve13v" path="res://assets/sounds/undertale/snd_undynestep.wav" id="5_ab1kw"]
+
+[sub_resource type="Animation" id="Animation_13tgn"]
+resource_name = "First_Appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PwgoodSmol:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PwgoodSmol/Attention:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PwgoodSmol:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 0, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PwgoodSmol:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(411, 146), Vector2(306, 149)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_qx5w7")
+}],
+"times": PackedFloat32Array(0.2, 0.2001)
+}
+tracks/4/use_blend = true
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"begin"
+}, {
+"args": [PackedStringArray("Ну кто", "Ну кто", "Ну кто", "Cкажи мне, кто звал тебя сюда")],
+"method": &"tell"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2vxlc"]
+resource_name = "First_Disappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PwgoodSmol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(306, 149), Vector2(-43, 149)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PwgoodSmol:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PwgoodSmol:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_u515v"]
+resource_name = "Last_Appear"
+length = 20.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_ab1kw")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_ab1kw")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_ab1kw")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_ab1kw")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_ab1kw")
+}],
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PwgoodSmol:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-45, 143), Vector2(-45, 143), Vector2(-45, 143), Vector2(0, 143), Vector2(0, 143), Vector2(45, 143), Vector2(45, 143), Vector2(90, 143), Vector2(90, 143), Vector2(135, 143), Vector2(135, 143)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PwgoodSmol:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [PackedStringArray("Я предупреждал тебя...")],
+"method": &"tell"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_i2gdy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PwgoodSmol:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PwgoodSmol/Attention:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PwgoodSmol:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PwgoodSmol:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(403, 152)]
+}
+
+[sub_resource type="Animation" id="Animation_ra735"]
+resource_name = "Second_Appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PwgoodSmol:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PwgoodSmol/Attention:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PwgoodSmol:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 0, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PwgoodSmol:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(411, 146), Vector2(306, 149)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_qx5w7")
+}],
+"times": PackedFloat32Array(0.2, 0.2001)
+}
+tracks/4/use_blend = true
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"begin"
+}, {
+"args": [PackedStringArray("Я убью тебя, если ещё раз попадёшься мне на глаза")],
+"method": &"tell"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ha65a"]
+_data = {
+"First_Appear": SubResource("Animation_13tgn"),
+"First_Disappear": SubResource("Animation_2vxlc"),
+"Last_Appear": SubResource("Animation_u515v"),
+"RESET": SubResource("Animation_i2gdy"),
+"Second_Appear": SubResource("Animation_ra735")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76jdu"]
+size = Vector2(20, 229)
+
+[node name="PWGood_encounter" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_i65g2")
+
+[node name="PwgoodSmol" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(403, 152)
+texture = ExtResource("2_t6kf4")
+hframes = 2
+frame = 1
+
+[node name="Attention" type="Sprite2D" parent="PwgoodSmol"]
+visible = false
+position = Vector2(14.5, -8)
+texture = ExtResource("3_avetf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 0.5
+libraries = {
+"": SubResource("AnimationLibrary_ha65a")
+}
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+max_polyphony = 5
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(182, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 104.5)
+shape = SubResource("RectangleShape2D_76jdu")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

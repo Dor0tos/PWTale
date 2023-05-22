@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy1tcpwbbvw06"]
+
+[ext_resource type="Script" path="res://scripts/wall_sign.gd" id="1_jxksj"]
+[ext_resource type="Texture2D" uid="uid://b7jjmfr1218nu" path="res://assets/sprites/hat.png" id="2_p4bbo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5e3n"]
+size = Vector2(26, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ej6ka"]
+size = Vector2(16, 26)
+
+[node name="Hat_Stand" type="Node2D"]
+script = ExtResource("1_jxksj")
+shown_text = PackedStringArray("На этой вешалке много одинаковых чёрный пиджаков")
+
+[node name="Hat" type="Sprite2D" parent="."]
+texture = ExtResource("2_p4bbo")
+region_rect = Rect2(0, 10, 19, 16)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_o5e3n")
+debug_color = Color(1, 1, 1, 0.419608)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ej6ka")

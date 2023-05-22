@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=3 uid="uid://b2akrr6fvibva"]
+
+[ext_resource type="Script" path="res://scripts/bedrock_room.gd" id="1_7no5v"]
+[ext_resource type="Texture2D" uid="uid://dh8cbrkh451gv" path="res://assets/empty_room.png" id="2_aj0b7"]
+[ext_resource type="PackedScene" uid="uid://qvvjg4g3wrqg" path="res://assets/objects/hanger.tscn" id="3_ldb7w"]
+[ext_resource type="PackedScene" uid="uid://c5vjjbkguyikt" path="res://assets/gneg.tscn" id="4_6bhit"]
+[ext_resource type="PackedScene" uid="uid://byqflaueocxyx" path="res://assets/objects/lenta_shelf.tscn" id="4_6m57u"]
+[ext_resource type="PackedScene" uid="uid://dy1tcpwbbvw06" path="res://assets/objects/hat_stand.tscn" id="4_qfh5r"]
+[ext_resource type="PackedScene" uid="uid://cvudirt14sqfo" path="res://assets/objects/book_shelf.tscn" id="5_fdvfe"]
+[ext_resource type="PackedScene" uid="uid://gjvi6x375405" path="res://assets/objects/mirror.tscn" id="6_bgpd8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft51i"]
+size = Vector2(196, 101)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vt7rs"]
+size = Vector2(52, 246.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvg0e"]
+size = Vector2(130, 21.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qanpq"]
+size = Vector2(28, 20)
+
+[node name="Empty_room" type="CanvasLayer"]
+script = ExtResource("1_7no5v")
+
+[node name="World" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="World"]
+offset_left = -186.0
+offset_top = -20.0
+offset_right = 532.0
+offset_bottom = 424.0
+color = Color(0, 0, 0, 1)
+
+[node name="EmptyRoom" type="Sprite2D" parent="World"]
+position = Vector2(198, 107)
+texture = ExtResource("2_aj0b7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(196, 33.5)
+shape = SubResource("RectangleShape2D_ft51i")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(78, 106.75)
+shape = SubResource("RectangleShape2D_vt7rs")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(319, 109)
+shape = SubResource("RectangleShape2D_vt7rs")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(279, 221.625)
+shape = SubResource("RectangleShape2D_hvg0e")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(117, 222)
+shape = SubResource("RectangleShape2D_hvg0e")
+
+[node name="Hanger" parent="World/StaticBody2D" instance=ExtResource("3_ldb7w")]
+position = Vector2(142, 177)
+shown_text = PackedStringArray("На этой вешалке много одинаковых чёрных пиджаков")
+
+[node name="Hanger2" parent="World/StaticBody2D" instance=ExtResource("3_ldb7w")]
+position = Vector2(152, 135)
+shown_text = PackedStringArray("На этой вешалке много одинаковых чёрных пиджаков")
+
+[node name="Hanger3" parent="World/StaticBody2D" instance=ExtResource("3_ldb7w")]
+position = Vector2(256, 183)
+shown_text = PackedStringArray("На этой вешалке много одинаковых чёрных пиджаков")
+
+[node name="Lenta_shelf" parent="World/StaticBody2D" instance=ExtResource("4_6m57u")]
+position = Vector2(142, 70)
+shown_text = PackedStringArray("На полке лежат несколько жёлтых лент с изображениями лягушки")
+
+[node name="Book_shelf" parent="World/StaticBody2D" instance=ExtResource("5_fdvfe")]
+position = Vector2(254, 70)
+shown_text = PackedStringArray("На полке много книг, подписанных как \"PepeLand\"", "Вы берёте одну книгу", "Листая книгу Вы случайно попадаете на главу \"Потоп\"", "Вы решаете поставить книгу на место")
+
+[node name="Mirror" parent="World/StaticBody2D" node_paths=PackedStringArray("Real_Gneg") instance=ExtResource("6_bgpd8")]
+position = Vector2(199, 61)
+Real_Gneg = NodePath("../../Gneg")
+
+[node name="Hat_Stand" parent="World/StaticBody2D" instance=ExtResource("4_qfh5r")]
+position = Vector2(261, 143)
+shown_text = PackedStringArray("Это хорошо сделанный чёрный цилиндр с жёлтой полоской", "Вы решаете примерить его", "Кажется он вам не как раз", "Вы решаете оставить его тут")
+
+[node name="Area2D" type="Area2D" parent="World"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Area2D"]
+position = Vector2(198, 227)
+shape = SubResource("RectangleShape2D_qanpq")
+
+[node name="Gneg" parent="World" instance=ExtResource("4_6bhit")]
+position = Vector2(199, 209)
+
+[node name="Camera2D" type="Camera2D" parent="World/Gneg"]
+limit_left = 0
+limit_top = -14
+limit_right = 383
+limit_bottom = 226
+position_smoothing_speed = 10.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[connection signal="body_entered" from="World/Area2D" to="." method="_on_area_2d_body_entered"]

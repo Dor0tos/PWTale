@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ds4bo0jse2578"]
+[gd_scene load_steps=18 format=3 uid="uid://ds4bo0jse2578"]
 
 [ext_resource type="Script" path="res://scripts/pw_good.gd" id="1_81pb7"]
 [ext_resource type="Texture2D" uid="uid://dll1jk50ob2ql" path="res://assets/sprites/pwgood_emotes.png" id="1_k4lbu"]
@@ -182,6 +182,157 @@ tracks/10/keys = {
 "method": &"hit_face"
 }]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Damage_Label:theme_override_colors/font_color")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rypy6"]
+resource_name = "Miss"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Knife:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Knife:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PWBody:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8),
+"transitions": PackedFloat32Array(4.59479, 0.707107, 0.707107, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-60, 0), Vector2(-60, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PWBody:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hat:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8),
+"transitions": PackedFloat32Array(5.09824, 0.702398, 0.702398, 1),
+"update": 0,
+"values": [Vector2(0, 6), Vector2(-60, 6), Vector2(-60, 6), Vector2(0, 6)]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_rpfvh")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Damage_Label:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-49, -0.25, 0, 0.25, 0, -49, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1.2)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Damage_Label:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-61.5, -0.25, 0, 0.2, -25.5, -61.5, -0.2, -26.5, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1.2)
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Damage_Label:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"miss_face"
+}]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Damage_Label:theme_override_colors/font_color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.254902, 0.27451, 0.388235, 1), Color(0.580392, 0.580392, 0.580392, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_q6hvq"]
 resource_name = "RESET"
@@ -304,6 +455,18 @@ tracks/9/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Damage_Label:theme_override_colors/font_color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_a07sh"]
 resource_name = "Talk"
@@ -312,6 +475,7 @@ resource_name = "Talk"
 _data = {
 "Cringe": SubResource("Animation_ulvdb"),
 "Hit": SubResource("Animation_ghff1"),
+"Miss": SubResource("Animation_rypy6"),
 "RESET": SubResource("Animation_q6hvq"),
 "Talk": SubResource("Animation_a07sh")
 }
@@ -381,7 +545,9 @@ scroll_active = false
 
 [node name="Timer" type="Timer" parent="RichTextLabel"]
 wait_time = 0.05
-autostart = true
+
+[node name="Timer_Epic" type="Timer" parent="RichTextLabel"]
+wait_time = 0.2
 
 [node name="MarginContainer" type="MarginContainer" parent="RichTextLabel"]
 layout_mode = 1
@@ -405,7 +571,9 @@ patch_margin_right = 5
 patch_margin_bottom = 6
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 12.0
 max_polyphony = 6
+bus = &"Effects"
 
 [node name="Damage_Label" type="Label" parent="."]
 visible = false
@@ -445,3 +613,4 @@ position = Vector2(0, 24)
 scale = Vector2(1.5, 1.5)
 
 [connection signal="timeout" from="RichTextLabel/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="RichTextLabel/Timer_Epic" to="." method="_on_timer_epic_timeout"]

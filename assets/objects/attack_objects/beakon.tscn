@@ -730,4 +730,6 @@ shape = SubResource("RectangleShape2D_1ppld")
 disabled = true
 debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+volume_db = 12.0
+bus = &"Effects"

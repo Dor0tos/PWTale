@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://d35tej6pynive"]
+
+[ext_resource type="Script" path="res://scripts/mouth_cube.gd" id="1_0i28w"]
+[ext_resource type="Texture2D" uid="uid://cwe6rbq8ty6ve" path="res://assets/sprites/mouth_cube.png" id="2_cr0ff"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aaclo"]
+size = Vector2(38, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2erv"]
+size = Vector2(54, 54)
+
+[node name="Mouth_Cube" type="Node2D"]
+script = ExtResource("1_0i28w")
+
+[node name="MouthCube" type="Sprite2D" parent="."]
+position = Vector2(9.5, 0)
+texture = ExtResource("2_cr0ff")
+hframes = 3
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_aaclo")
+
+[node name="Near_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Near_Area"]
+shape = SubResource("RectangleShape2D_r2erv")
+
+[connection signal="body_entered" from="Near_Area" to="." method="_on_near_area_body_entered"]
+[connection signal="body_exited" from="Near_Area" to="." method="_on_near_area_body_exited"]

@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2bgs7l3flnev"]
+[gd_scene load_steps=12 format=3 uid="uid://b2bgs7l3flnev"]
 
 [ext_resource type="Script" path="res://scripts/Scene_Transition.gd" id="1_7f5u0"]
+[ext_resource type="Texture2D" uid="uid://besq67knta6qf" path="res://assets/sprites/soul.png" id="2_54yoj"]
+[ext_resource type="AudioStream" uid="uid://sy5k72r6qrer" path="res://assets/sounds/snd_noise.wav" id="2_lhelw"]
+
+[sub_resource type="Gradient" id="Gradient_fkvr2"]
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8o015"]
+gradient = SubResource("Gradient_fkvr2")
 
 [sub_resource type="Animation" id="Animation_78p5c"]
 resource_name = "RESET"
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -15,6 +25,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Soul_Icon:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_q5mq4"]
@@ -33,14 +55,150 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_bkyy2"]
+resource_name = "fight"
+length = 0.525
+step = 0.075
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_lhelw")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_lhelw")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_lhelw")
+}],
+"times": PackedFloat32Array(0.15, 0.3, 0.45)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Soul_Icon:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.225, 0.3, 0.375, 0.45, 0.525),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_y15oe"]
+resource_name = "ui_first"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gradient_in:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gradient_in:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(768, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_suijs"]
+resource_name = "ui_second"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gradient_out:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gradient_out:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-384, 0), Vector2(384, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gradient_in:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ns8jx"]
 _data = {
 "RESET": SubResource("Animation_78p5c"),
-"disolve": SubResource("Animation_q5mq4")
+"disolve": SubResource("Animation_q5mq4"),
+"fight": SubResource("Animation_bkyy2"),
+"ui_first": SubResource("Animation_y15oe"),
+"ui_second": SubResource("Animation_suijs")
 }
 
 [node name="Scene_Transition" type="CanvasLayer"]
+process_mode = 3
+layer = 2
 script = ExtResource("1_7f5u0")
+
+[node name="Gradient_in" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-1, 1)
+texture = SubResource("GradientTexture1D_8o015")
+
+[node name="Gradient_out" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.0
+offset_right = 768.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_8o015")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -55,3 +213,12 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_ns8jx")
 }
+
+[node name="Soul_Icon" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 1)
+position = Vector2(164, 107)
+texture = ExtResource("2_54yoj")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Effects"

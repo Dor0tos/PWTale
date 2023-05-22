@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1p7iin3i1qed"
+path="res://.godot/imported/JETPACK HELLRIDE Preview.mp3-5bb1398e01e47e3ddb0b22841cb10bed.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/JETPACK HELLRIDE Preview.mp3"
+dest_files=["res://.godot/imported/JETPACK HELLRIDE Preview.mp3-5bb1398e01e47e3ddb0b22841cb10bed.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=7.84
+bpm=0.0
+beat_count=0
+bar_beats=4

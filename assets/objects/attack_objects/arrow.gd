@@ -16,6 +16,3 @@ func _ready():
 
 func _process(delta):
 	position += Vector2(speed * Direction, 0)
-
-func _on__damage_area_area_entered(area):
-	queue_free()

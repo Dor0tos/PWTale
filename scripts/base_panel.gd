@@ -125,9 +125,10 @@ func _input(event):
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		play_select_sound()
-		options_matrix[current_pos.y][current_pos.x]["Action"].call(
-			options_matrix[current_pos.y][current_pos.x]["Data"]
-		)
+		if options_matrix[0].size() != 0:
+			options_matrix[current_pos.y][current_pos.x]["Action"].call(
+				options_matrix[current_pos.y][current_pos.x]["Data"]
+			)
 	
 	draw_page()
 	change_selection(true)

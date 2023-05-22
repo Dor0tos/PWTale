@@ -5,7 +5,11 @@ extends Control
 @onready var back_panel = $MarginContainer/Panel
 @onready var sound_player : AudioStreamPlayer = $"../../../../../SoundPlayer"
 
-@onready var soul_texture = preload("res://assets/sprites/soul.png")
+@onready var default_soul = preload("res://assets/sprites/soul.png")
+@onready var geo_soul = preload("res://assets/sprites/soul_geo.png")
+
+@export var soul_texture : int = 0
+
 @onready var snd_select = preload("res://assets/sounds/snd_squeak.wav")
 @onready var snd_press = preload("res://assets/sounds/snd_select.wav")
 
@@ -19,6 +23,12 @@ extends Control
 
 signal button_pressed(sender)
 
+func get_soul_tecture():
+	if soul_texture == 1:
+		return geo_soul
+	else:
+		return default_soul
+
 func change_selection_status(selected : bool):
 	is_selected = selected
 	
@@ -26,7 +36,7 @@ func change_selection_status(selected : bool):
 		sound_player.stream = snd_select
 		sound_player.play()
 	
-	icon_rect.texture = icon if !selected else soul_texture
+	icon_rect.texture = icon if !selected else get_soul_tecture()
 	back_panel.get_theme_stylebox("panel").border_color = Color.YELLOW if selected else default_color
 	icon_rect.modulate = soul_color if selected else Color.WHITE
 	label.set(

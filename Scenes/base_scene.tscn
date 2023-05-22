@@ -1,15 +1,34 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctaugu5v8w17e"]
+[gd_scene load_steps=21 format=3 uid="uid://ctaugu5v8w17e"]
 
 [ext_resource type="Script" path="res://Scripts/base_scene.gd" id="1_iybxi"]
 [ext_resource type="PackedScene" uid="uid://cpa6ya8jw40gf" path="res://assets/hall_frame.tscn" id="2_67wok"]
 [ext_resource type="PackedScene" uid="uid://c5vjjbkguyikt" path="res://assets/gneg.tscn" id="3_2xnlu"]
 [ext_resource type="PackedScene" uid="uid://cy8g2um734pb2" path="res://assets/hall_frame_empty.tscn" id="3_3wfii"]
-[ext_resource type="PackedScene" uid="uid://c1guyr3aq3o6d" path="res://assets/wall_sign.tscn" id="4_df1r7"]
+[ext_resource type="Texture2D" uid="uid://dh8yrwo3psjii" path="res://assets/Base_hall_empty.png" id="3_dnun8"]
 [ext_resource type="PackedScene" uid="uid://ivwpff8il8ye" path="res://assets/floor.tscn" id="5_fqgby"]
-[ext_resource type="PackedScene" uid="uid://d0nhqfxs1yidw" path="res://assets/front_wall.tscn" id="6_h0qcd"]
+[ext_resource type="Texture2D" uid="uid://u8ji7dmi61mh" path="res://assets/sprites/greenhounse_light.png" id="5_gdxus"]
+[ext_resource type="PackedScene" uid="uid://bxgitn5mgutyu" path="res://assets/objects/Gr_Sans.tscn" id="5_n2lqd"]
+[ext_resource type="PackedScene" uid="uid://ba2yp08r1luwj" path="res://assets/objects/shulker.tscn" id="5_tjti2"]
+[ext_resource type="PackedScene" uid="uid://ckxglp3amnltl" path="res://assets/objects/Gr_HUI.tscn" id="6_51b0l"]
+[ext_resource type="PackedScene" uid="uid://ct2rb3fs1tyum" path="res://assets/objects/Gr_Shegi.tscn" id="7_dkob5"]
+[ext_resource type="PackedScene" uid="uid://b71iqhpcd1uyj" path="res://assets/objects/chest.tscn" id="8_ih42a"]
+[ext_resource type="PackedScene" uid="uid://vukde6lbnlnn" path="res://assets/objects/pw_good_encounter.tscn" id="10_xucad"]
+[ext_resource type="Texture2D" uid="uid://besq67knta6qf" path="res://assets/sprites/soul.png" id="12_7sjnn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wb0x"]
+size = Vector2(206, 197)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nydif"]
 size = Vector2(20, 290.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3eoh6"]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7vel"]
+size = Vector2(272.89, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82vyr"]
+size = Vector2(19.058, 91)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7avvt"]
 size = Vector2(26, 3.25)
@@ -41,7 +60,14 @@ position = Vector2(1536, 0)
 [node name="HallFrame3" parent="World" instance=ExtResource("2_67wok")]
 position = Vector2(192, 0)
 
-[node name="HallFrame2" parent="World" instance=ExtResource("3_3wfii")]
+[node name="HallFrame2" type="StaticBody2D" parent="World"]
+
+[node name="BaseHallEmpty" type="Sprite2D" parent="World/HallFrame2"]
+position = Vector2(96, 72)
+texture = ExtResource("3_dnun8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/HallFrame2"]
+polygon = PackedVector2Array(0, 86, 4, 86, 11, 83, 11, 80, 32, 80, 63, 80, 181, 80, 181, 83, 188, 86, 192, 86, 192, 0, 0, 0)
 
 [node name="HallFrame4" parent="World" instance=ExtResource("3_3wfii")]
 position = Vector2(288, 0)
@@ -60,41 +86,6 @@ position = Vector2(1632, 0)
 
 [node name="HallFrame14" parent="World" instance=ExtResource("3_3wfii")]
 position = Vector2(1824, 0)
-
-[node name="WallSign" parent="World" node_paths=PackedStringArray("white_list_body") instance=ExtResource("4_df1r7")]
-position = Vector2(268, 65)
-white_list_body = NodePath("../Gneg")
-shown_text = PackedStringArray("(Надпись очень неаккуратным почерком)", "([shake]Бедрок[/shake])")
-
-[node name="WallSign2" parent="World" node_paths=PackedStringArray("white_list_body") instance=ExtResource("4_df1r7")]
-position = Vector2(556, 66)
-white_list_body = NodePath("../Gneg")
-shown_text = PackedStringArray("(Надпись очень неаккуратным почерком)", "([shake]Пончик[/shake])")
-
-[node name="WallSign3" parent="World" node_paths=PackedStringArray("white_list_body") instance=ExtResource("4_df1r7")]
-position = Vector2(652, 65)
-white_list_body = NodePath("../Gneg")
-shown_text = PackedStringArray("(Надпись очень неаккуратным почерком)", "([shake]Оранжерея[/shake])")
-
-[node name="WallSign4" parent="World" node_paths=PackedStringArray("white_list_body") instance=ExtResource("4_df1r7")]
-position = Vector2(940, 65)
-white_list_body = NodePath("../Gneg")
-shown_text = PackedStringArray("(Надпись очень неаккуратным почерком)", "([shake]Обратный объём[/shake])")
-
-[node name="WallSign5" parent="World" node_paths=PackedStringArray("white_list_body") instance=ExtResource("4_df1r7")]
-position = Vector2(1228, 65)
-white_list_body = NodePath("../Gneg")
-shown_text = PackedStringArray("(Надпись очень неаккуратным почерком)", "(Невозможно разобрать, что здесь написано)")
-
-[node name="WallSign6" parent="World" node_paths=PackedStringArray("white_list_body") instance=ExtResource("4_df1r7")]
-position = Vector2(1324, 65)
-white_list_body = NodePath("../Gneg")
-shown_text = PackedStringArray("(Надпись очень неаккуратным почерком)", "([shake]Двухщелевой эксперимент[/shake])")
-
-[node name="WallSign7" parent="World" node_paths=PackedStringArray("white_list_body") instance=ExtResource("4_df1r7")]
-position = Vector2(1612, 65)
-white_list_body = NodePath("../Gneg")
-shown_text = PackedStringArray("(Надпись очень неаккуратным почерком)", "([shake]Живые кубики[/shake])")
 
 [node name="Floor3" parent="World" instance=ExtResource("5_fqgby")]
 position = Vector2(0, 144)
@@ -117,10 +108,181 @@ position = Vector2(1728, 144)
 [node name="Floor7" parent="World" instance=ExtResource("5_fqgby")]
 position = Vector2(864, 144)
 
-[node name="ColorRect" type="ColorRect" parent="World"]
-offset_right = 112.0
-offset_bottom = 199.0
-color = Color(0, 0, 0, 0.419608)
+[node name="Graphiti" parent="World" instance=ExtResource("5_n2lqd")]
+position = Vector2(725, 54)
+shown_text = PackedStringArray("Немного потёртое граффити Санса Андертейл", "Кажется его пытались стереть")
+
+[node name="Graphiti2" parent="World" instance=ExtResource("6_51b0l")]
+position = Vector2(1040, 50)
+shown_text = PackedStringArray("Забудем об этом...")
+
+[node name="Graphiti3" parent="World" instance=ExtResource("7_dkob5")]
+position = Vector2(1488, 46)
+shown_text = PackedStringArray("Очень хорошее граффити с изображением Шеги")
+
+[node name="PWGood_encounter1" parent="World" instance=ExtResource("10_xucad")]
+position = Vector2(584, 10)
+
+[node name="PWGood_encounter2" parent="World" instance=ExtResource("10_xucad")]
+position = Vector2(1248, 10)
+appear_count = 2
+
+[node name="Last_envc_activate" type="Area2D" parent="World"]
+position = Vector2(1551, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Last_envc_activate"]
+position = Vector2(360, 90.5)
+shape = SubResource("RectangleShape2D_5wb0x")
+
+[node name="PWGood_last_encounter" parent="World" instance=ExtResource("10_xucad")]
+position = Vector2(1551, 10)
+appear_count = 3
+enabled = false
+
+[node name="Chest" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(576, 112)
+shown_text = PackedStringArray("В этом сундуке лежит один хот-дог", "Хот-дог (1) добавлен в инвентарь")
+Name = "Хот-дог"
+HP_Restore = 20
+Amount = 1
+
+[node name="Chest2" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(817, 90)
+shown_text = PackedStringArray("Этот сундук пуст")
+
+[node name="Chest3" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(970, 150)
+shown_text = PackedStringArray("В этом сундуке лежит мука, яйца, сахар и молоко")
+
+[node name="Chest4" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(1335, 177)
+shown_text = PackedStringArray("В этом сундуке лежит 2 паучих пончика", "Паучий пончик (2) добавлен в инвентарь")
+Name = "Паучий пончик"
+HP_Restore = 12
+Amount = 2
+
+[node name="Chest5" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(1616, 96)
+shown_text = PackedStringArray("Тут лежит один легендарный герой", "Лег. герой (1) добавлен в инвентарь")
+Name = "Лег. герой"
+HP_Restore = 40
+Amount = 1
+
+[node name="Chest6" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(1990, 121)
+readble = false
+shown_text = PackedStringArray("В сундуке полно грязи и камней", "Не очень нужные вещи")
+
+[node name="Chest7" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(1972, 161)
+readble = false
+shown_text = PackedStringArray("В сундуке полно грязи и камней", "Не очень нужные вещи")
+
+[node name="Chest8" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(2005, 145)
+readble = false
+shown_text = PackedStringArray("В сундуке полно грязи и камней", "Не очень нужные вещи")
+
+[node name="Chest9" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(1944, 91)
+readble = false
+shown_text = PackedStringArray("В сундуке полно грязи и камней", "Не очень нужные вещи")
+
+[node name="Chest10" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(1936, 186)
+readble = false
+shown_text = PackedStringArray("В сундуке полно грязи и камней", "Не очень нужные вещи")
+
+[node name="Chest12" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(1967, 196)
+readble = false
+shown_text = PackedStringArray("В сундуке полно грязи и камней", "Не очень нужные вещи")
+
+[node name="Chest13" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(1944, 199)
+readble = false
+shown_text = PackedStringArray("В сундуке полно грязи и камней", "Не очень нужные вещи")
+
+[node name="Chest11" parent="World" instance=ExtResource("8_ih42a")]
+position = Vector2(1909, 100)
+readble = false
+shown_text = PackedStringArray("В сундуке полно грязи и камней", "Не очень нужные вещи")
+
+[node name="Shulker" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(350, 89)
+shown_text = PackedStringArray("В этом сундуке лежат бумаги, на которых нарисованы стороны бедрока")
+shulker_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[node name="Shulker2" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(596, 165)
+shown_text = PackedStringArray("Здесь лежат удобрения")
+shulker_color = Color(0.258824, 0.490196, 0.858824, 1)
+
+[node name="Shulker3" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(783, 90)
+shown_text = PackedStringArray("В этом шалкере много костей")
+shulker_color = Color(1, 1, 1, 1)
+
+[node name="Shulker4" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1108, 96)
+shown_text = PackedStringArray("Здесь лежит серьёзное обмундирование")
+shulker_color = Color(0.290196, 0.219608, 0.172549, 1)
+
+[node name="Shulker5" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1256, 102)
+shown_text = PackedStringArray("В этом шалкере лежат запасные лампочки")
+shulker_color = Color(0.376471, 0.858824, 0.258824, 1)
+
+[node name="Shulker6" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1428, 96)
+shown_text = PackedStringArray("Здесь лежат разрисованные карты", "Пустая трата бумаги")
+shulker_color = Color(0.258824, 0.490196, 0.858824, 1)
+
+[node name="Shulker7" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1728, 90)
+shown_text = PackedStringArray("В этом шалкере много Солов Гудменов", "Зачем кто-то хранит их так...")
+shulker_color = Color(0.858824, 0.258824, 0.258824, 1)
+
+[node name="Shulker8" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1584, 192)
+shown_text = PackedStringArray("Здесь лежит очень много куриных яиц")
+shulker_color = Color(0.780392, 0.858824, 0.258824, 1)
+
+[node name="Shulker9" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1990, 96)
+readble = false
+shown_text = PackedStringArray("В шалкере полно грязи и камней", "Не очень нужные вещи")
+shulker_color = Color(1, 1, 1, 1)
+
+[node name="Shulker10" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1972, 105)
+readble = false
+shown_text = PackedStringArray("В шалкере полно грязи и камней", "Не очень нужные вещи")
+shulker_color = Color(0.258824, 0.490196, 0.858824, 1)
+
+[node name="Shulker12" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1959, 179)
+readble = false
+shown_text = PackedStringArray("В шалкере полно грязи и камней", "Не очень нужные вещи")
+shulker_color = Color(0.215686, 0.215686, 0.215686, 1)
+
+[node name="Shulker13" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1964, 137)
+readble = false
+shown_text = PackedStringArray("В шалкере полно грязи и камней", "Не очень нужные вещи")
+shulker_color = Color(0.811765, 0.258824, 0.858824, 1)
+
+[node name="Shulker14" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1940, 121)
+readble = false
+shown_text = PackedStringArray("В шалкере полно грязи и камней", "Не очень нужные вещи")
+shulker_color = Color(0.529412, 0.858824, 0.258824, 1)
+
+[node name="Shulker11" parent="World" instance=ExtResource("5_tjti2")]
+position = Vector2(1993, 170)
+readble = false
+shown_text = PackedStringArray("В шалкере полно грязи и камней", "Не очень нужные вещи")
+shulker_color = Color(0.858824, 0.407843, 0.258824, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="World"]
 position = Vector2(-10, 144.75)
@@ -136,7 +298,7 @@ position = Vector2(2035, -0.75)
 shape = SubResource("RectangleShape2D_nydif")
 
 [node name="Gneg" parent="World" instance=ExtResource("3_2xnlu")]
-position = Vector2(112, 128)
+position = Vector2(49, 201)
 
 [node name="Camera2D" type="Camera2D" parent="World/Gneg"]
 limit_left = 0
@@ -147,24 +309,94 @@ position_smoothing_speed = 10.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="FrontWall" parent="World" instance=ExtResource("6_h0qcd")]
+[node name="ColorRect" type="ColorRect" parent="World"]
+offset_right = 112.0
+offset_bottom = 208.0
+color = Color(0, 0, 0, 0.419608)
+
+[node name="Soul_Debug" type="Sprite2D" parent="World"]
+position = Vector2(105, -29)
+texture = ExtResource("12_7sjnn")
+
+[node name="GreenhounseLight" type="Sprite2D" parent="World"]
+material = SubResource("CanvasItemMaterial_3eoh6")
+position = Vector2(624, 76.5)
+texture = ExtResource("5_gdxus")
+
+[node name="FrontWall" type="StaticBody2D" parent="World"]
 position = Vector2(0, 199)
 scale = Vector2(7.346, 1)
+
+[node name="ColorRect" type="ColorRect" parent="World/FrontWall"]
+offset_right = 16.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="World/FrontWall"]
+offset_left = 15.0
+offset_right = 288.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/FrontWall"]
+position = Vector2(151.555, 54.5)
+shape = SubResource("RectangleShape2D_e7vel")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/FrontWall"]
+position = Vector2(6.67029, 54.5)
+shape = SubResource("RectangleShape2D_82vyr")
 
 [node name="Triggers" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="Donut Room Entry" type="Area2D" parent="Triggers"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Donut Room Entry"]
-position = Vector2(240, 78)
-shape = SubResource("RectangleShape2D_7avvt")
-
 [node name="Bedrock Room Entry" type="Area2D" parent="Triggers"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Bedrock Room Entry"]
+position = Vector2(240, 78)
+shape = SubResource("RectangleShape2D_7avvt")
+
+[node name="Donut Room Entry" type="Area2D" parent="Triggers"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Donut Room Entry"]
 position = Vector2(528, 78)
 shape = SubResource("RectangleShape2D_7avvt")
 
-[connection signal="body_entered" from="Triggers/Donut Room Entry" to="." method="_on_area_2d_2_body_entered"]
-[connection signal="body_entered" from="Triggers/Bedrock Room Entry" to="." method="_on_area_2d_body_entered"]
+[node name="Plants Room Entry" type="Area2D" parent="Triggers"]
+position = Vector2(96, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Plants Room Entry"]
+position = Vector2(528, 78)
+shape = SubResource("RectangleShape2D_7avvt")
+
+[node name="Reverce Room Entry" type="Area2D" parent="Triggers"]
+position = Vector2(912, 78)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Reverce Room Entry"]
+shape = SubResource("RectangleShape2D_7avvt")
+
+[node name="Cubes Room Entry" type="Area2D" parent="Triggers"]
+position = Vector2(1584, 78)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cubes Room Entry"]
+shape = SubResource("RectangleShape2D_7avvt")
+
+[node name="Experiment Room Entry" type="Area2D" parent="Triggers"]
+position = Vector2(1295, 78)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Experiment Room Entry"]
+shape = SubResource("RectangleShape2D_7avvt")
+
+[node name="Wardrobe Room Entry" type="Area2D" parent="Triggers"]
+position = Vector2(1200, 78)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Wardrobe Room Entry"]
+shape = SubResource("RectangleShape2D_7avvt")
+
+[connection signal="body_entered" from="World/Last_envc_activate" to="." method="_on_last_envc_activate_body_entered"]
+[connection signal="battle_begin" from="World/PWGood_last_encounter" to="." method="_on_pw_good_encounter_battle_begin"]
+[connection signal="body_entered" from="Triggers/Donut Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/donut_room.tscn"]]
+[connection signal="body_entered" from="Triggers/Plants Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/plants_room.tscn"]]
+[connection signal="body_entered" from="Triggers/Reverce Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/reverce_room.tscn"]]
+[connection signal="body_entered" from="Triggers/Cubes Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/cubes_room.tscn"]]
+[connection signal="body_entered" from="Triggers/Experiment Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/experiment_room.tscn"]]
+[connection signal="body_entered" from="Triggers/Wardrobe Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/garderob_room.tscn"]]

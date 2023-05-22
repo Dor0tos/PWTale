@@ -1,0 +1,210 @@
+[gd_scene load_steps=14 format=3 uid="uid://cbxs5anv14jp2"]
+
+[ext_resource type="Script" path="res://Scenes/win_screen.gd" id="1_7pybn"]
+[ext_resource type="Texture2D" uid="uid://c758o2xvy0qvb" path="res://assets/sprites/menus/win_text.png" id="1_x5jmk"]
+[ext_resource type="Texture2D" uid="uid://besq67knta6qf" path="res://assets/sprites/soul.png" id="2_v7eg6"]
+[ext_resource type="Shader" path="res://Scenes/MainMenuLogo.gdshader" id="3_1525p"]
+[ext_resource type="Texture2D" uid="uid://b6rejpc7hxu61" path="res://assets/sprites/menus/win_hat.png" id="4_mc5wp"]
+[ext_resource type="AudioStream" uid="uid://7nhs0rr5km3a" path="res://assets/sounds/Undertale.mp3" id="6_i86tm"]
+[ext_resource type="Texture2D" uid="uid://btyywuujrptt" path="res://assets/sprites/menus/and_now.png" id="7_74dah"]
+[ext_resource type="Texture2D" uid="uid://b4oi6uct3c4e4" path="res://assets/sprites/menus/hello.png" id="8_cao1d"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_swhw7"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+initial_velocity_min = -35.0
+initial_velocity_max = 35.0
+angular_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 0, 0, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xphhp"]
+shader = ExtResource("3_1525p")
+
+[sub_resource type="Animation" id="Animation_le1yu"]
+resource_name = "thanks"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AndNow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AndNow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(194, 151), Vector2(194, 161), Vector2(194, 151)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hello:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(195, 168), Vector2(195, 178), Vector2(195, 168)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hello:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ntjbl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hello:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(195, 168)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AndNow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(194, 151)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AndNow:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hello:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3f4t"]
+_data = {
+"RESET": SubResource("Animation_ntjbl"),
+"thanks": SubResource("Animation_le1yu")
+}
+
+[node name="Win_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7pybn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.5
+offset_top = -38.5
+offset_right = 94.5
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x5jmk")
+stretch_mode = 4
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(47, 223)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_swhw7")
+texture = ExtResource("2_v7eg6")
+lifetime = 5.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(341, 232)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_swhw7")
+texture = ExtResource("2_v7eg6")
+lifetime = 5.0
+
+[node name="WinHat" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xphhp")
+position = Vector2(226, 77)
+texture = ExtResource("4_mc5wp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_i86tm")
+volume_db = 6.0
+autoplay = true
+bus = &"Music"
+
+[node name="AndNow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(194, 151)
+texture = ExtResource("7_74dah")
+
+[node name="Hello" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(195, 168)
+texture = ExtResource("8_cao1d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q3f4t")
+}

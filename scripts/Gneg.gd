@@ -5,7 +5,11 @@ const SPEED = 100.0
 
 var is_reading = false
 
-func _physics_process(delta):
+func _input(event):
+	if event.is_action_pressed("ui_pause"):
+		SceneTransition.pause_on(get_tree().get_root())
+
+func _physics_process(_delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction_x = 0

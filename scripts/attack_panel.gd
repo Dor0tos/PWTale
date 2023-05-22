@@ -3,6 +3,8 @@ extends Control
 @onready var area_stack = [miss_mod]
 @onready var attack_modifier = 0
 
+@export var area_white_list : Array = []
+
 const miss_mod = 0.0
 const low_mod = 0.5
 const med_mod = 0.75
@@ -39,7 +41,15 @@ func _input(event):
 	if Input.is_action_just_pressed("ui_accept"):
 		end_attack()
 
+func area_allowed(_area):
+	for area in area_white_list:
+		if _area == get_node(area):
+			return true
+	return false
+
 func _on_marker_area_entered(area):
+	if !area_allowed(area):
+		return
 	if area.name == "Area_Low":
 		area_stack.push_front(low_mod)
 	elif area.name == "Area_Med":
@@ -50,6 +60,8 @@ func _on_marker_area_entered(area):
 		area_stack.push_front(perfect_mod)
 
 func _on_marker_area_exited(area):
+	if !area_allowed(area):
+		return
 	area_stack.pop_front()
 
 func begin_attack():
@@ -65,7 +77,6 @@ func begin_attack():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
-		area_stack = [miss_mod]
 		hide_panel()
 	else:
 		end_attack()

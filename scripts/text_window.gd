@@ -1,5 +1,7 @@
 extends Node
 
+@export var tell_sound = preload("res://assets/sounds/SND_TXT1.wav")
+
 @onready var text_box = $TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer/MarginContainer/Text
 @onready var portrait = $TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer/Portrait
 @onready var sound_player = $AudioStreamPlayer
@@ -25,7 +27,11 @@ enum RunMode {
 var current_state : State = State.READY
 var text_queue = []
 
+func set_new_sound(sound):
+	sound_player.stream = sound
+
 func _ready():
+	sound_player.stream = tell_sound
 	pass
 	#set_portrait_picture("res://assets/PWGood_portrait.png")
 	#add_text("Очень длинный текст жесть просто какой длинный, аж на 2 строки разросся, а нет уже на 3")
@@ -44,7 +50,7 @@ func run_reading(text: String):
 	text_box.text = text
 	$Timer.start()
 
-func _input(event):
+func _input(_event):
 	match current_state:
 		State.READY:
 			pass

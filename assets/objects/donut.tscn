@@ -830,6 +830,7 @@ autoplay = "Spin"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1.5, -8.5)
 shape = SubResource("RectangleShape2D_q1tgj")
+debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

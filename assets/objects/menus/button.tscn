@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca6t2npqgkmel"]
+
+[ext_resource type="Texture2D" uid="uid://bbtdv4x3w5xcf" path="res://assets/sprites/menus/settings_button.png" id="1_jsdre"]
+[ext_resource type="Script" path="res://assets/objects/menus/button.gd" id="2_4hsty"]
+[ext_resource type="AudioStream" uid="uid://c4wqpakvse6f1" path="res://assets/sounds/snd_squeak.wav" id="3_aaoxd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0hthq"]
+blend_mode = 2
+
+[node name="Button_Begin" type="TextureRect"]
+custom_minimum_size = Vector2(5, 5)
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 54.0
+offset_bottom = 6.0
+size_flags_horizontal = 4
+texture = ExtResource("1_jsdre")
+script = ExtResource("2_4hsty")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -1
+theme_override_constants/margin_top = -1
+theme_override_constants/margin_right = -1
+theme_override_constants/margin_bottom = -1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+material = SubResource("CanvasItemMaterial_0hthq")
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_aaoxd")
+volume_db = 12.0
+bus = &"Effects"

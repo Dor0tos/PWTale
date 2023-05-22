@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://nnb46trofxoj"]
+
+[ext_resource type="Script" path="res://assets/debug/Scenes/debug_console.gd" id="1_qvyyf"]
+[ext_resource type="FontFile" uid="uid://snupf0e1e1xs" path="res://assets/fonts/Hardpixel.OTF" id="1_y3155"]
+
+[node name="DebugConsole" type="CanvasLayer"]
+script = ExtResource("1_qvyyf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 107.0
+grow_vertical = 2
+size_flags_horizontal = 0
+color = Color(0, 0, 0, 0.439216)
+
+[node name="Label" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 0.560784)
+theme_override_fonts/normal_font = ExtResource("1_y3155")
+theme_override_font_sizes/normal_font_size = 8
+scroll_following = true

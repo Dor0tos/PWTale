@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://bokx0ls4tsvk3"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_18m21"]
+[ext_resource type="PackedScene" uid="uid://ca6t2npqgkmel" path="res://assets/objects/menus/button.tscn" id="1_c4pxi"]
+[ext_resource type="Texture2D" uid="uid://cq14op3nodugt" path="res://assets/sprites/menus/start_game.png" id="2_0u314"]
+[ext_resource type="Shader" path="res://Scenes/MainMenuLogo.gdshader" id="2_uxpxf"]
+[ext_resource type="Texture2D" uid="uid://55qs3r0ierf0" path="res://assets/sprites/menus/logo.png" id="2_yidmb"]
+[ext_resource type="Texture2D" uid="uid://daonnu8aes1lq" path="res://assets/sprites/menus/used_content.png" id="3_seyct"]
+[ext_resource type="Texture2D" uid="uid://by6gmjxqhdjov" path="res://assets/sprites/menus/button_battle_begin.png" id="6_10die"]
+[ext_resource type="Texture2D" uid="uid://bugd87s62b5sp" path="res://assets/sprites/menus/credits.png" id="6_x7sfd"]
+[ext_resource type="AudioStream" uid="uid://tcqe20u04t68" path="res://assets/sounds/snd_select.wav" id="7_tgqbw"]
+[ext_resource type="Texture2D" uid="uid://bl0air7ncr1uy" path="res://assets/sprites/menus/button_exit.png" id="8_c4fmi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ao272"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51bgp"]
+shader = ExtResource("2_uxpxf")
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_18m21")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ao272")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer"]
+material = SubResource("ShaderMaterial_51bgp")
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_yidmb")
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Button_Begin" parent="Panel/VBoxContainer" instance=ExtResource("1_c4pxi")]
+layout_mode = 2
+texture = ExtResource("2_0u314")
+
+[node name="Button_BeginBattle" parent="Panel/VBoxContainer" instance=ExtResource("1_c4pxi")]
+layout_mode = 2
+texture = ExtResource("6_10die")
+
+[node name="Button_Settings" parent="Panel/VBoxContainer" instance=ExtResource("1_c4pxi")]
+layout_mode = 2
+
+[node name="Button_Content" parent="Panel/VBoxContainer" instance=ExtResource("1_c4pxi")]
+layout_mode = 2
+texture = ExtResource("3_seyct")
+
+[node name="Control2" type="Control" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Button_exit" parent="Panel/VBoxContainer" instance=ExtResource("1_c4pxi")]
+layout_mode = 2
+texture = ExtResource("8_c4fmi")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -10.0
+offset_right = 53.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+texture = ExtResource("6_x7sfd")
+stretch_mode = 3
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_tgqbw")
+volume_db = 12.0
+bus = &"Effects"

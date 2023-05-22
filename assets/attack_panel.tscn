@@ -127,6 +127,7 @@ offset_bottom = -141.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nkruh")
+area_white_list = [NodePath("Area_Low"), NodePath("Area_Med"), NodePath("Area_High"), NodePath("Area_Perfect")]
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

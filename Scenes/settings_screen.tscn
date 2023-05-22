@@ -1,0 +1,126 @@
+[gd_scene load_steps=16 format=3 uid="uid://bymxg85kgk3wb"]
+
+[ext_resource type="Script" path="res://scripts/settings_screen.gd" id="1_fxsdm"]
+[ext_resource type="Texture2D" uid="uid://crdm1e7s3tly8" path="res://assets/sprites/menus/settings_logo.png" id="2_jt3l5"]
+[ext_resource type="Curve" uid="uid://bg4bghdmtqhof" path="res://Scenes/Volume_Curve.tres" id="2_s4rey"]
+[ext_resource type="PackedScene" uid="uid://ca6t2npqgkmel" path="res://assets/objects/menus/button.tscn" id="2_ucw08"]
+[ext_resource type="Texture2D" uid="uid://dpccly5xxtjsi" path="res://assets/sprites/menus/text_master.png" id="4_252pn"]
+[ext_resource type="PackedScene" uid="uid://c6x16ca501q6l" path="res://assets/objects/menus/slider.tscn" id="5_2myst"]
+[ext_resource type="Texture2D" uid="uid://beib0rk1ra1kp" path="res://assets/sprites/menus/text_effects.png" id="5_ie7xl"]
+[ext_resource type="Texture2D" uid="uid://js4ndsaemvl3" path="res://assets/sprites/menus/text_music.png" id="6_ywr27"]
+[ext_resource type="PackedScene" uid="uid://dy310rous282n" path="res://assets/objects/menus/selecter.tscn" id="7_l23jj"]
+[ext_resource type="Texture2D" uid="uid://dgxkr6godii8g" path="res://assets/sprites/menus/button_back.png" id="8_bo51f"]
+[ext_resource type="AudioStream" uid="uid://1p7iin3i1qed" path="res://assets/sounds/JETPACK HELLRIDE Preview.mp3" id="8_oxqct"]
+[ext_resource type="AudioStream" uid="uid://lmf7rytwx3uw" path="res://assets/sounds/snd_battlefall.wav" id="9_s4pyg"]
+[ext_resource type="PackedScene" uid="uid://b5vpbyce736yb" path="res://assets/objects/menus/selecter_screen.tscn" id="9_weina"]
+[ext_resource type="AudioStream" uid="uid://tcqe20u04t68" path="res://assets/sounds/snd_select.wav" id="11_ow0n7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw1hj"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Settings_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fxsdm")
+VolumeCurve = ExtResource("2_s4rey")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jw1hj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(106, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_right = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_jt3l5")
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Master" parent="Panel/VBoxContainer" instance=ExtResource("5_2myst")]
+custom_minimum_size = Vector2(106, 10)
+layout_mode = 2
+texture = ExtResource("4_252pn")
+
+[node name="Effects" parent="Panel/VBoxContainer" instance=ExtResource("5_2myst")]
+custom_minimum_size = Vector2(106, 10)
+layout_mode = 2
+texture = ExtResource("5_ie7xl")
+
+[node name="Music" parent="Panel/VBoxContainer" instance=ExtResource("5_2myst")]
+custom_minimum_size = Vector2(106, 10)
+layout_mode = 2
+texture = ExtResource("6_ywr27")
+
+[node name="ColorRect" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Selecter" parent="Panel/VBoxContainer" instance=ExtResource("7_l23jj")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Selecter2" parent="Panel/VBoxContainer" instance=ExtResource("9_weina")]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Button_Back" parent="Panel/VBoxContainer" instance=ExtResource("2_ucw08")]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("8_bo51f")
+
+[node name="MasterTester" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_oxqct")
+volume_db = 12.0
+
+[node name="MusicTester" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_oxqct")
+volume_db = 12.0
+bus = &"Music"
+
+[node name="SoundTester" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_s4pyg")
+bus = &"Effects"
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ow0n7")
+volume_db = 12.0
+bus = &"Effects"
+
+[connection signal="value_changed" from="Panel/VBoxContainer/Master" to="." method="_on_slider_value_changed" binds= ["Master"]]
+[connection signal="value_changed" from="Panel/VBoxContainer/Effects" to="." method="_on_slider_value_changed" binds= ["Effects"]]
+[connection signal="value_changed" from="Panel/VBoxContainer/Music" to="." method="_on_slider_value_changed" binds= ["Music"]]
+[connection signal="value_changed" from="Panel/VBoxContainer/Selecter" to="." method="_on_selecter_value_changed"]

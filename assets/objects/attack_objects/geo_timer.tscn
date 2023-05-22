@@ -46,6 +46,7 @@ offset_bottom = 18.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_naits")
 
 [node name="ProgressBar" type="ProgressBar" parent="Panel"]
+layout_mode = 0
 offset_right = 82.0
 offset_bottom = 20.0
 theme_override_styles/background = SubResource("StyleBoxFlat_idn3i")
@@ -54,6 +55,7 @@ value = 30.0
 show_percentage = false
 
 [node name="Panel2" type="Panel" parent="Panel"]
+layout_mode = 0
 offset_left = 80.0
 offset_right = 100.0
 offset_bottom = 20.0
@@ -70,9 +72,10 @@ text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_gnmn3")
 pitch_scale = 0.74
+bus = &"Effects"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Sound_timer" to="." method="_on_sound_timer_timeout"]

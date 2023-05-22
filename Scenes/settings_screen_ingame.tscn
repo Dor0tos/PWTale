@@ -1,0 +1,142 @@
+[gd_scene load_steps=18 format=3 uid="uid://njp8n221cy2"]
+
+[ext_resource type="Script" path="res://Scenes/settings_screen_ingame.gd" id="1_fr4wy"]
+[ext_resource type="Curve" uid="uid://bg4bghdmtqhof" path="res://Scenes/Volume_Curve.tres" id="2_2sqht"]
+[ext_resource type="Texture2D" uid="uid://crdm1e7s3tly8" path="res://assets/sprites/menus/settings_logo.png" id="2_7ubr0"]
+[ext_resource type="PackedScene" uid="uid://c6x16ca501q6l" path="res://assets/objects/menus/slider.tscn" id="3_qescd"]
+[ext_resource type="Texture2D" uid="uid://dpccly5xxtjsi" path="res://assets/sprites/menus/text_master.png" id="4_tcd8j"]
+[ext_resource type="Texture2D" uid="uid://beib0rk1ra1kp" path="res://assets/sprites/menus/text_effects.png" id="5_afi52"]
+[ext_resource type="Texture2D" uid="uid://js4ndsaemvl3" path="res://assets/sprites/menus/text_music.png" id="6_cf0i5"]
+[ext_resource type="PackedScene" uid="uid://dy310rous282n" path="res://assets/objects/menus/selecter.tscn" id="7_sgjbh"]
+[ext_resource type="PackedScene" uid="uid://ca6t2npqgkmel" path="res://assets/objects/menus/button.tscn" id="8_nsweu"]
+[ext_resource type="Texture2D" uid="uid://dvk7vtk83qgkv" path="res://assets/sprites/menus/text_difficulty_locked.png" id="8_qgffx"]
+[ext_resource type="Texture2D" uid="uid://dgxkr6godii8g" path="res://assets/sprites/menus/button_back.png" id="9_i62cw"]
+[ext_resource type="PackedScene" uid="uid://b5vpbyce736yb" path="res://assets/objects/menus/selecter_screen.tscn" id="10_02hnb"]
+[ext_resource type="AudioStream" uid="uid://1p7iin3i1qed" path="res://assets/sounds/JETPACK HELLRIDE Preview.mp3" id="10_42s7e"]
+[ext_resource type="AudioStream" uid="uid://lmf7rytwx3uw" path="res://assets/sounds/snd_battlefall.wav" id="11_5naby"]
+[ext_resource type="AudioStream" uid="uid://tcqe20u04t68" path="res://assets/sounds/snd_select.wav" id="12_62v47"]
+[ext_resource type="Texture2D" uid="uid://brjxpcm7ro7ok" path="res://assets/sprites/menus/to_main.png" id="12_lkcjo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw1hj"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Settings_Screen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_fr4wy")
+VolumeCurve = ExtResource("2_2sqht")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jw1hj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel"]
+custom_minimum_size = Vector2(106, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_right = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_7ubr0")
+
+[node name="Control" type="Control" parent="UI/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Master" parent="UI/Panel/VBoxContainer" instance=ExtResource("3_qescd")]
+custom_minimum_size = Vector2(106, 10)
+layout_mode = 2
+texture = ExtResource("4_tcd8j")
+
+[node name="Effects" parent="UI/Panel/VBoxContainer" instance=ExtResource("3_qescd")]
+custom_minimum_size = Vector2(106, 10)
+layout_mode = 2
+texture = ExtResource("5_afi52")
+
+[node name="Music" parent="UI/Panel/VBoxContainer" instance=ExtResource("3_qescd")]
+custom_minimum_size = Vector2(106, 10)
+layout_mode = 2
+texture = ExtResource("6_cf0i5")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Selecter" parent="UI/Panel/VBoxContainer" instance=ExtResource("7_sgjbh")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("8_qgffx")
+
+[node name="ColorRect2" type="ColorRect" parent="UI/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Selecter2" parent="UI/Panel/VBoxContainer" instance=ExtResource("10_02hnb")]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="UI/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Button_Back" parent="UI/Panel/VBoxContainer" instance=ExtResource("8_nsweu")]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("9_i62cw")
+
+[node name="ColorRect3" type="ColorRect" parent="UI/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Button_Menu" parent="UI/Panel/VBoxContainer" instance=ExtResource("8_nsweu")]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("12_lkcjo")
+
+[node name="MasterTester" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("10_42s7e")
+volume_db = 12.0
+
+[node name="MusicTester" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("10_42s7e")
+volume_db = 12.0
+bus = &"Music"
+
+[node name="SoundTester" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("11_5naby")
+bus = &"Effects"
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("12_62v47")
+volume_db = 12.0
+bus = &"Effects"
+
+[connection signal="value_changed" from="UI/Panel/VBoxContainer/Master" to="." method="_on_slider_value_changed" binds= ["Master"]]
+[connection signal="value_changed" from="UI/Panel/VBoxContainer/Effects" to="." method="_on_slider_value_changed" binds= ["Effects"]]
+[connection signal="value_changed" from="UI/Panel/VBoxContainer/Music" to="." method="_on_slider_value_changed" binds= ["Music"]]
+[connection signal="value_changed" from="UI/Panel/VBoxContainer/Selecter" to="." method="_on_selecter_value_changed"]

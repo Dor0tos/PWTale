@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct2rb3fs1tyum"]
+
+[ext_resource type="Script" path="res://Scripts/wall_sign.gd" id="1_o48ml"]
+[ext_resource type="Texture2D" uid="uid://dnw4lo35vjrgp" path="res://assets/sprites/shegi_grafiti.png" id="2_olrku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2c4x"]
+size = Vector2(20, 18)
+
+[node name="Graphiti" type="Node2D"]
+script = ExtResource("1_o48ml")
+
+[node name="ShegiGrafiti" type="Sprite2D" parent="."]
+texture = ExtResource("2_olrku")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 31)
+shape = SubResource("RectangleShape2D_n2c4x")

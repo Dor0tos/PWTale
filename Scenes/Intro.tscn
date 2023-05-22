@@ -1,0 +1,282 @@
+[gd_scene load_steps=11 format=3 uid="uid://dy12ihurxunq6"]
+
+[ext_resource type="Script" path="res://TextWindowIntro.gd" id="1_f1t7v"]
+[ext_resource type="AudioStream" uid="uid://4p63yr32ky75" path="res://assets/sounds/Once Upon A Time.mp3" id="1_jahce"]
+[ext_resource type="Texture2D" uid="uid://06xpordoacue" path="res://assets/sprites/menus/intro.png" id="1_p6p87"]
+[ext_resource type="Script" path="res://Scenes/Intro.gd" id="1_y33uc"]
+[ext_resource type="AudioStream" uid="uid://d2m76dcmamupf" path="res://assets/sounds/SND_TXT1.wav" id="3_bhcet"]
+[ext_resource type="AudioStream" uid="uid://dtemy0rn0cp5e" path="res://assets/sounds/undertale/snd_chug.wav" id="3_swupr"]
+
+[sub_resource type="Animation" id="Animation_eh25f"]
+resource_name = "Appear"
+length = 82.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_jahce")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.5, 6, 6.5, 11.5, 12, 12.5, 17.5, 18, 18.5, 23.5, 24, 24.5, 29.5, 30, 30.5, 35.5, 36, 36.5, 41.5, 42, 42.5, 47.5, 48, 48.5, 53.5, 54, 54.5, 59.5, 60, 60.5, 65.5, 66, 66.5, 72.9, 76.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/VBoxContainer/Control/Intro:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 10, 4, 5, 6, 8, 9, 10, 11]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/VBoxContainer/TextWindow")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6, 7, 12, 13, 18, 19, 24, 25, 30, 31, 36, 37, 42, 43, 48, 60, 61, 66, 67),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": ["Давным-давно Пугод и чатеры правили Пепелендом"],
+"method": &"text_show"
+}, {
+"args": [],
+"method": &"reset_text"
+}, {
+"args": ["Но однажны пугод начал строить свою базу и запретил заходить на её территорию"],
+"method": &"text_show"
+}, {
+"args": [],
+"method": &"reset_text"
+}, {
+"args": ["После продолжительных споров им удалось договориться"],
+"method": &"text_show"
+}, {
+"args": [],
+"method": &"reset_text"
+}, {
+"args": ["Пугод обозначил зону притона и позволил чатерам строиться там"],
+"method": &"text_show"
+}, {
+"args": [],
+"method": &"reset_text"
+}, {
+"args": ["Однако чатерам всё так же запрещалось заходить на саму базу"],
+"method": &"text_show"
+}, {
+"args": [],
+"method": &"reset_text"
+}, {
+"args": ["Много месяцев спустя..."],
+"method": &"text_show"
+}, {
+"args": [],
+"method": &"reset_text"
+}, {
+"args": ["Притон 2023"],
+"method": &"text_show"
+}, {
+"args": [],
+"method": &"reset_text"
+}, {
+"args": ["Легенды гласят, что на базе Пугода есть множество удивительных и ужасных вещей"],
+"method": &"text_show"
+}, {
+"args": [],
+"method": &"reset_text"
+}, {
+"args": [],
+"method": &"reset_text"
+}, {
+"args": ["Легенды гласят..."],
+"method": &"text_show"
+}, {
+"args": [],
+"method": &"reset_text"
+}, {
+"args": ["Что с базы Пугода ещё никто не уходил живым"],
+"method": &"text_show"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Music:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(73, 82),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_hynh0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jxuae"]
+_data = {
+"Appear": SubResource("Animation_eh25f"),
+"RESET": SubResource("Animation_hynh0")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbd60"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y33uc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 216.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jxuae")
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 110)
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Intro" type="Sprite2D" parent="CenterContainer/VBoxContainer/Control"]
+position = Vector2(100, 55)
+texture = ExtResource("1_p6p87")
+hframes = 12
+frame = 2
+
+[node name="TextWindow" type="Control" parent="CenterContainer/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_f1t7v")
+tell_sound = ExtResource("3_swupr")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/TextWindow"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/TextWindow/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qbd60")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/TextWindow/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/TextWindow/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = -196
+
+[node name="Text" type="RichTextLabel" parent="CenterContainer/VBoxContainer/TextWindow/MarginContainer/Panel/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/line_separation = 9
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Строка 1
+Строка 2
+Строка 3"
+scroll_active = false
+
+[node name="Timer" type="Timer" parent="CenterContainer/VBoxContainer/TextWindow"]
+wait_time = 0.05
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/TextWindow"]
+stream = ExtResource("3_bhcet")
+autoplay = true
+mix_target = 2
+bus = &"Effects"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+mix_target = 2
+bus = &"Music"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="timeout" from="CenterContainer/VBoxContainer/TextWindow/Timer" to="CenterContainer/VBoxContainer/TextWindow" method="_on_timer_timeout"]

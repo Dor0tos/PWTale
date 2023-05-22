@@ -573,4 +573,6 @@ libraries = {
 "": SubResource("AnimationLibrary_rpgms")
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+volume_db = 12.0
+bus = &"Effects"

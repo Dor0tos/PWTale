@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bsrp54qtce06e"]
+[gd_scene load_steps=28 format=3 uid="uid://bsrp54qtce06e"]
 
 [ext_resource type="Script" path="res://scripts/battle.gd" id="1_rv1ro"]
 [ext_resource type="PackedScene" uid="uid://ds4bo0jse2578" path="res://assets/objects/pw_good.tscn" id="1_xixm8"]
@@ -19,6 +19,10 @@
 [ext_resource type="AudioStream" uid="uid://c4wqpakvse6f1" path="res://assets/sounds/snd_squeak.wav" id="11_ddcs1"]
 [ext_resource type="PackedScene" uid="uid://cxld2m0fhnd0d" path="res://assets/objects/batlle_background.tscn" id="15_36qer"]
 [ext_resource type="AudioStream" uid="uid://bxmtax33ltom4" path="res://assets/sounds/JETPACK HELLRIDE (MEGALOVANIA, but it's Jetpack Joyride) (mp3cut.net) (1).mp3" id="16_6u5ik"]
+
+[sub_resource type="Curve" id="Curve_prkqd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8mva"]
 bg_color = Color(0, 0, 0, 1)
@@ -73,6 +77,7 @@ border_color = Color(0.980392, 0.415686, 0.0392157, 1)
 
 [node name="Battle" type="CanvasLayer"]
 script = ExtResource("1_rv1ro")
+Difficulty_Curve = SubResource("Curve_prkqd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -120,6 +125,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1t4im")
 
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/TabPanels/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Panel/MainPanel/VBoxContainer/TabPanels/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Немного текста)))
+И ещё))
+А вот и третья строка)"
+autowrap_mode = 3
+
 [node name="Attack_Template" parent="Panel/MainPanel/VBoxContainer/TabPanels" instance=ExtResource("2_t24u1")]
 visible = false
 layout_mode = 1
@@ -127,6 +152,7 @@ offset_left = 124.0
 offset_top = 38.0
 offset_right = -124.0
 offset_bottom = -37.0
+Immortal_time = 1.0
 
 [node name="Attack Panel" parent="Panel/MainPanel/VBoxContainer/TabPanels" instance=ExtResource("2_6e38g")]
 visible = false
@@ -634,11 +660,14 @@ scale = Vector2(0.8, 0.8)
 
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_ddcs1")
+volume_db = 12.0
+bus = &"Effects"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("16_6u5ik")
-volume_db = -14.0
-autoplay = true
+volume_db = 12.0
+bus = &"Music"
 
 [connection signal="attack_finished" from="Panel/MainPanel/VBoxContainer/TabPanels/Attack_Template" to="." method="_on_attack_template_attack_finished"]
 [connection signal="get_damage" from="Panel/MainPanel/VBoxContainer/TabPanels/Attack_Template" to="." method="_on_attack_template_get_damage"]

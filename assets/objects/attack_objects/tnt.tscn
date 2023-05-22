@@ -359,7 +359,9 @@ libraries = {
 "": SubResource("AnimationLibrary_x72ot")
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+volume_db = 18.0
+bus = &"Effects"
 
 [node name="_damage_static_area" type="Area2D" parent="."]
 

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bynipkyctuaoy"]
+
+[ext_resource type="Script" path="res://assets/objects/attack_objects/chat_person.gd" id="1_8wmae"]
+[ext_resource type="FontFile" uid="uid://snupf0e1e1xs" path="res://assets/fonts/Hardpixel.OTF" id="1_xrwrh"]
+[ext_resource type="AudioStream" uid="uid://0q66cea1620h" path="res://assets/sounds/undertale/snd_heal_c.wav" id="3_sw4s6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgaeg"]
+resource_local_to_scene = true
+
+[node name="ChatPerson" type="Node2D"]
+script = ExtResource("1_8wmae")
+
+[node name="Label" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = -33.0
+offset_top = -11.5
+offset_right = 40.0
+offset_bottom = -1.5
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/normal_font = ExtResource("1_xrwrh")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "pwgood456456465"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="_health_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="_health_area"]
+shape = SubResource("RectangleShape2D_bgaeg")
+debug_color = Color(0.0352941, 0.701961, 0, 0.419608)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sw4s6")
+volume_db = 3.0
+bus = &"Effects"
+
+[connection signal="area_entered" from="_health_area" to="." method="_on__health_area_area_entered"]

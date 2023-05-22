@@ -1,0 +1,277 @@
+[gd_scene load_steps=15 format=3 uid="uid://05ofuuwhc7lo"]
+
+[ext_resource type="Script" path="res://scripts/Soul.gd" id="1_2ni4p"]
+[ext_resource type="Script" path="res://Scenes/chat_catch.gd" id="1_f8h7u"]
+[ext_resource type="PackedScene" uid="uid://b83qjkmi1qtyl" path="res://Scenes/chat_members.tscn" id="2_t0hn0"]
+[ext_resource type="Texture2D" uid="uid://besq67knta6qf" path="res://assets/sprites/soul.png" id="2_wedn4"]
+[ext_resource type="AudioStream" uid="uid://3k6om5pis2bl" path="res://assets/sounds/Last Goodbye.mp3" id="5_aqkyu"]
+[ext_resource type="Texture2D" uid="uid://fc2gevbsalud" path="res://assets/sprites/menus/thanks.png" id="6_2mlky"]
+[ext_resource type="PackedScene" uid="uid://bgyc6i7y715et" path="res://chat.tscn" id="7_j1dtr"]
+[ext_resource type="Texture2D" uid="uid://y548vovj3uol" path="res://assets/sprites/Lightmask.png" id="8_0gj0a"]
+
+[sub_resource type="Gradient" id="Gradient_l4015"]
+colors = PackedColorArray(0, 0, 0, 1, 0.752941, 0.509804, 0.14902, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8q8se"]
+gradient = SubResource("Gradient_l4015")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bw4xs"]
+size = Vector2(7, 6)
+
+[sub_resource type="Animation" id="Animation_ru53f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soul:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thanks:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 108)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thanks:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Chat:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(293, 5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TextureRect2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -216)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Lightmask:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Lightmask:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cmcus"]
+resource_name = "finale"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soul:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thanks:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(12, 20),
+"transitions": PackedFloat32Array(3.03143, 1),
+"update": 0,
+"values": [Vector2(192, 108), Vector2(192, 250)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thanks:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.5, 7.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Chat:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(2.37841, 1),
+"update": 0,
+"values": [Vector2(293, 5), Vector2(293, -50)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TextureRect2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(12, 20),
+"transitions": PackedFloat32Array(3.03143, 1),
+"update": 0,
+"values": [Vector2(0, -216), Vector2(0, -108)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Lightmask:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(12, 20),
+"transitions": PackedFloat32Array(3.03143, 1),
+"update": 0,
+"values": [Vector2(192, 0), Vector2(192, 62)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ucdcw"]
+_data = {
+"RESET": SubResource("Animation_ru53f"),
+"finale": SubResource("Animation_cmcus")
+}
+
+[node name="ChatCatch" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f8h7u")
+
+[node name="Chat_Members" parent="." instance=ExtResource("2_t0hn0")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -216.0
+offset_right = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_8q8se")
+expand_mode = 1
+
+[node name="Soul" type="CharacterBody2D" parent="."]
+position = Vector2(192, 108)
+motion_mode = 1
+script = ExtResource("1_2ni4p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Soul"]
+shape = SubResource("RectangleShape2D_bw4xs")
+
+[node name="Soul" type="Sprite2D" parent="Soul"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_wedn4")
+
+[node name="SoulDamage_area" type="Area2D" parent="Soul"]
+
+[node name="Shape" type="CollisionPolygon2D" parent="Soul/SoulDamage_area"]
+position = Vector2(-0.5, 0)
+polygon = PackedVector2Array(0, 3, -3, 0, -3, -2, -2, -3, 0, -3, 0, -2, 1, -2, 1, -3, 3, -3, 4, -2, 4, 0, 1, 3)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_aqkyu")
+volume_db = 6.0
+autoplay = true
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ucdcw")
+}
+
+[node name="Thanks" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(192, 108)
+texture = ExtResource("6_2mlky")
+
+[node name="Chat" parent="." instance=ExtResource("7_j1dtr")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = 293.0
+offset_top = 5.0
+offset_right = 379.0
+offset_bottom = 41.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="Lightmask" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(192, 0)
+texture = ExtResource("8_0gj0a")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

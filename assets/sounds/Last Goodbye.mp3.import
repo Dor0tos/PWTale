@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3k6om5pis2bl"
+path="res://.godot/imported/Last Goodbye.mp3-a2205a75b9a5c33284998bdeb3dcc5b2.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Last Goodbye.mp3"
+dest_files=["res://.godot/imported/Last Goodbye.mp3-a2205a75b9a5c33284998bdeb3dcc5b2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

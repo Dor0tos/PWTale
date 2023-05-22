@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgyc6i7y715et"]
+
+[ext_resource type="Script" path="res://chat.gd" id="1_bd20q"]
+[ext_resource type="FontFile" uid="uid://snupf0e1e1xs" path="res://assets/fonts/Hardpixel.OTF" id="2_vaav3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05gi4"]
+bg_color = Color(0, 0, 0, 0.682353)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bd20q")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = 1000
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_05gi4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Label" type="RichTextLabel" parent="Panel/MarginContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_vaav3")
+theme_override_font_sizes/normal_font_size = 6
+bbcode_enabled = true
+scroll_active = false
+scroll_following = true

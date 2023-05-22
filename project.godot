@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="PWTale"
-run/main_scene="res://Scenes/base_scene.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [audio]
 

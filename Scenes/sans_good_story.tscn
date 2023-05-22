@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4t0n7aipsc5k"]
+
+[ext_resource type="Script" path="res://Scenes/sans_good_story.gd" id="1_pyqrm"]
+[ext_resource type="AudioStream" uid="uid://dmj3uyb7t7hq3" path="res://assets/sounds/undertale/snd_txtsans.wav" id="2_fd6xs"]
+[ext_resource type="AudioStream" uid="uid://cme6plurap3up" path="res://assets/sounds/Kitchen.mp3" id="3_gm4wo"]
+
+[node name="SansGoodStory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pyqrm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_right = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Чтож... Хорошя получилась история"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+visible_ratio = -0.030303
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fd6xs")
+bus = &"Effects"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gm4wo")
+autoplay = true
+bus = &"Music"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
