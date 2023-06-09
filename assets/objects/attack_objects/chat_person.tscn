@@ -36,7 +36,7 @@ debug_color = Color(0.0352941, 0.701961, 0, 0.419608)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_sw4s6")
-volume_db = 3.0
+volume_db = -3.0
 bus = &"Effects"
 
 [connection signal="area_entered" from="_health_area" to="." method="_on__health_area_area_entered"]

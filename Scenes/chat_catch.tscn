@@ -9,13 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bgyc6i7y715et" path="res://chat.tscn" id="7_j1dtr"]
 [ext_resource type="Texture2D" uid="uid://y548vovj3uol" path="res://assets/sprites/Lightmask.png" id="8_0gj0a"]
 
-[sub_resource type="Gradient" id="Gradient_l4015"]
-colors = PackedColorArray(0, 0, 0, 1, 0.752941, 0.509804, 0.14902, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8q8se"]
-gradient = SubResource("Gradient_l4015")
-fill_from = Vector2(1, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bw4xs"]
 size = Vector2(7, 6)
 
@@ -72,34 +65,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("TextureRect2:position")
+tracks/4/path = NodePath("Lightmask:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -216)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Lightmask:modulate")
+tracks/5/path = NodePath("Lightmask:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Lightmask:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -160,22 +141,10 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("TextureRect2:position")
+tracks/4/path = NodePath("Lightmask:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(12, 20),
-"transitions": PackedFloat32Array(3.03143, 1),
-"update": 0,
-"values": [Vector2(0, -216), Vector2(0, -108)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Lightmask:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(12, 20),
 "transitions": PackedFloat32Array(3.03143, 1),
 "update": 0,
@@ -187,6 +156,12 @@ _data = {
 "RESET": SubResource("Animation_ru53f"),
 "finale": SubResource("Animation_cmcus")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5jm"]
+size = Vector2(10, 232)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksjas"]
+size = Vector2(401, 27)
 
 [node name="ChatCatch" type="Control"]
 layout_mode = 3
@@ -207,18 +182,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -216.0
-offset_right = 384.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_8q8se")
-expand_mode = 1
 
 [node name="Soul" type="CharacterBody2D" parent="."]
 position = Vector2(192, 108)
@@ -243,7 +206,7 @@ wait_time = 0.25
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_aqkyu")
-volume_db = 6.0
+volume_db = 12.0
 autoplay = true
 bus = &"Music"
 
@@ -262,9 +225,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_bottom = 0.0
-offset_left = 293.0
+offset_left = -91.0
 offset_top = 5.0
-offset_right = 379.0
+offset_right = -5.0
 offset_bottom = 41.0
 grow_horizontal = 0
 grow_vertical = 1
@@ -273,5 +236,23 @@ grow_vertical = 1
 modulate = Color(1, 1, 1, 0)
 position = Vector2(192, 0)
 texture = ExtResource("8_0gj0a")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-5, 106)
+shape = SubResource("RectangleShape2D_5f5jm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(389, 106)
+shape = SubResource("RectangleShape2D_5f5jm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(198.5, -13.5)
+shape = SubResource("RectangleShape2D_ksjas")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(198.5, 229)
+shape = SubResource("RectangleShape2D_ksjas")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

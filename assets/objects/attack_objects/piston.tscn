@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://28x5sq8qgtns" path="res://assets/sprites/attack_obj/piston.png" id="1_ad6rt"]
 [ext_resource type="Script" path="res://assets/objects/attack_objects/piston.gd" id="1_qr1qj"]
-[ext_resource type="AudioStream" uid="uid://co8vmvgt2dir8" path="res://assets/sounds/attack_sound/piston.wav" id="1_xkv0w"]
+[ext_resource type="AudioStream" uid="uid://dbc7asx75f2cn" path="res://assets/sounds/in.mp3" id="2_e01dn"]
 
 [sub_resource type="Animation" id="Animation_wkg1q"]
 resource_name = "Close"
@@ -22,7 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_yxqj0"]
 resource_name = "Open"
-length = 0.2
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -45,9 +45,9 @@ tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("1_xkv0w")
+"stream": ExtResource("2_e01dn")
 }],
-"times": PackedFloat32Array(-0.2)
+"times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
 

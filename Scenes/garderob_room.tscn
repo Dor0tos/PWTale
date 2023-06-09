@@ -78,7 +78,7 @@ shown_text = PackedStringArray("На полке лежат несколько ж
 
 [node name="Book_shelf" parent="World/StaticBody2D" instance=ExtResource("5_fdvfe")]
 position = Vector2(254, 70)
-shown_text = PackedStringArray("На полке много книг, подписанных как \"PepeLand\"", "Вы берёте одну книгу", "Листая книгу Вы случайно попадаете на главу \"Потоп\"", "Вы решаете поставить книгу на место")
+shown_text = PackedStringArray("На полке много книг, подписанных как \"PepeLand\"", "Вы берёте одну книгу", "Листая книгу Вы случайно попадаете на главу \"Потоп\"", "Вы прочитали всё. Теперь это ваша любимая книга")
 
 [node name="Mirror" parent="World/StaticBody2D" node_paths=PackedStringArray("Real_Gneg") instance=ExtResource("6_bgpd8")]
 position = Vector2(199, 61)

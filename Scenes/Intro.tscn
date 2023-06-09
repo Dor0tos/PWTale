@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy12ihurxunq6"]
+[gd_scene load_steps=15 format=3 uid="uid://dy12ihurxunq6"]
 
 [ext_resource type="Script" path="res://TextWindowIntro.gd" id="1_f1t7v"]
 [ext_resource type="AudioStream" uid="uid://4p63yr32ky75" path="res://assets/sounds/Once Upon A Time.mp3" id="1_jahce"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Intro.gd" id="1_y33uc"]
 [ext_resource type="AudioStream" uid="uid://d2m76dcmamupf" path="res://assets/sounds/SND_TXT1.wav" id="3_bhcet"]
 [ext_resource type="AudioStream" uid="uid://dtemy0rn0cp5e" path="res://assets/sounds/undertale/snd_chug.wav" id="3_swupr"]
+[ext_resource type="Texture2D" uid="uid://bns34oq6l1dhg" path="res://assets/sprites/menus/skip_text.png" id="7_2vbes"]
 
 [sub_resource type="Animation" id="Animation_eh25f"]
 resource_name = "Appear"
@@ -162,6 +163,16 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.8, 0.8, 0.8, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wuudm"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p3x4"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_uls1u"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_wuudm")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_3p3x4")
+
 [node name="Intro" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -261,6 +272,7 @@ wait_time = 0.05
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/TextWindow"]
 stream = ExtResource("3_bhcet")
+volume_db = -12.0
 autoplay = true
 mix_target = 2
 bus = &"Effects"
@@ -279,4 +291,40 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SkipControl" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -19.0
+offset_right = 55.0
+offset_bottom = -5.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkipControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="SkipControl/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_2vbes")
+stretch_mode = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="SkipControl/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme = SubResource("Theme_uls1u")
+max_value = 2.0
+show_percentage = false
+
 [connection signal="timeout" from="CenterContainer/VBoxContainer/TextWindow/Timer" to="CenterContainer/VBoxContainer/TextWindow" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

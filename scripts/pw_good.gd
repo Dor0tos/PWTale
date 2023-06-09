@@ -136,7 +136,7 @@ func strip_bbcode(text : String) -> String:
 func _on_timer_epic_timeout():
 	$RichTextLabel.visible_characters += 1
 	apply_label_size()
-	$AudioStreamPlayer.stream = pwgood_talk
+	$AudioStreamPlayer.stream = epic_talk
 	$AudioStreamPlayer.play()
 	if $RichTextLabel.visible_characters == strip_bbcode($RichTextLabel.text).length():
 		emit_signal("text_shown")

@@ -11,6 +11,8 @@ const dialoge = preload("res://assets/text_window.tscn")
 
 var is_player_nearby : bool = false
 
+signal items_held
+
 func _ready():
 	var area : Area2D
 	for node in get_children():
@@ -23,8 +25,10 @@ func _ready():
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_accept") and is_player_nearby:
-		for i in range(Amount):
-			Global.add_item(Name, HP_Restore)
+		if Amount != 0:
+			for i in range(Amount):
+				Global.add_item(Name, HP_Restore)
+			emit_signal("items_held")
 		
 		$Chest.frame = 1
 		await get_tree().create_timer(0.01).timeout

@@ -9,14 +9,21 @@ signal ui_transition_done
 func _ready():
 	pass
 
+var pause
+
 func pause_on(root):
 	$AnimationPlayer.play("ui_first")
 	await $AnimationPlayer.animation_finished
 	
+	AudioServer.set_bus_effect_enabled(
+		AudioServer.get_bus_index("Music"), 0, true
+	)
+	
 	get_tree().paused = true
-	root.get_children()[2].add_child(Global.pause_menu)
-	Global.pause_menu.selected_setting = 0
-	Global.pause_menu.settings[0].select()
+	pause = pause_obj.instantiate()
+	root.get_children()[2].add_child(pause)
+	pause.selected_setting = 0
+	pause.settings[0].select()
 	
 	$AnimationPlayer.play("ui_second")
 
@@ -24,7 +31,12 @@ func pause_off(root):
 	$AnimationPlayer.play("ui_first")
 	await $AnimationPlayer.animation_finished
 	
-	root.get_children()[2].remove_child(Global.pause_menu)
+	AudioServer.set_bus_effect_enabled(
+		AudioServer.get_bus_index("Music"), 0, false
+	)
+	
+	root.get_children()[2].remove_child(pause)
+	pause.queue_free()
 	get_tree().paused = false
 	
 	emit_signal("pause_disabled")

@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3dtrfvkolpgj"]
+
+[ext_resource type="Script" path="res://assets/objects/menus/diemode_checkbox.gd" id="1_03y2f"]
+[ext_resource type="Texture2D" uid="uid://cmdi61m2ul4s0" path="res://assets/sprites/menus/die_text.png" id="2_6vtgx"]
+[ext_resource type="Texture2D" uid="uid://bg2pfnf4jmw4w" path="res://assets/sprites/menus/die_box.png" id="3_6hlxv"]
+[ext_resource type="AudioStream" uid="uid://c4wqpakvse6f1" path="res://assets/sounds/snd_squeak.wav" id="4_pv2ii"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s11wv"]
+blend_mode = 2
+
+[node name="Selecter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_03y2f")
+
+[node name="Text" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -2.5
+offset_right = 46.0
+offset_bottom = 2.5
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_6vtgx")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Text"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -1
+theme_override_constants/margin_top = -1
+theme_override_constants/margin_right = -1
+theme_override_constants/margin_bottom = -1
+
+[node name="ColorRect" type="ColorRect" parent="Text/MarginContainer"]
+material = SubResource("CanvasItemMaterial_s11wv")
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Selecters_Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -27.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Selecter4" type="Sprite2D" parent="Selecters_Container"]
+position = Vector2(22.5, 0.5)
+texture = ExtResource("3_6hlxv")
+hframes = 4
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pv2ii")
+volume_db = 12.0
+bus = &"Effects"

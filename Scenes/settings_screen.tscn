@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bymxg85kgk3wb"]
+[gd_scene load_steps=18 format=3 uid="uid://bymxg85kgk3wb"]
 
 [ext_resource type="Script" path="res://scripts/settings_screen.gd" id="1_fxsdm"]
 [ext_resource type="Texture2D" uid="uid://crdm1e7s3tly8" path="res://assets/sprites/menus/settings_logo.png" id="2_jt3l5"]
@@ -11,8 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://dy310rous282n" path="res://assets/objects/menus/selecter.tscn" id="7_l23jj"]
 [ext_resource type="Texture2D" uid="uid://dgxkr6godii8g" path="res://assets/sprites/menus/button_back.png" id="8_bo51f"]
 [ext_resource type="AudioStream" uid="uid://1p7iin3i1qed" path="res://assets/sounds/JETPACK HELLRIDE Preview.mp3" id="8_oxqct"]
+[ext_resource type="PackedScene" uid="uid://c3dtrfvkolpgj" path="res://assets/objects/menus/diemode_checkbox.tscn" id="9_dwo0a"]
 [ext_resource type="AudioStream" uid="uid://lmf7rytwx3uw" path="res://assets/sounds/snd_battlefall.wav" id="9_s4pyg"]
 [ext_resource type="PackedScene" uid="uid://b5vpbyce736yb" path="res://assets/objects/menus/selecter_screen.tscn" id="9_weina"]
+[ext_resource type="Texture2D" uid="uid://cmdi61m2ul4s0" path="res://assets/sprites/menus/die_text.png" id="10_ng057"]
 [ext_resource type="AudioStream" uid="uid://tcqe20u04t68" path="res://assets/sounds/snd_select.wav" id="11_ow0n7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw1hj"]
@@ -83,6 +85,11 @@ color = Color(0.392157, 0.392157, 0.392157, 1)
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
+[node name="Selecter3" parent="Panel/VBoxContainer" instance=ExtResource("9_dwo0a")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("10_ng057")
+
 [node name="ColorRect2" type="ColorRect" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
@@ -124,3 +131,4 @@ bus = &"Effects"
 [connection signal="value_changed" from="Panel/VBoxContainer/Effects" to="." method="_on_slider_value_changed" binds= ["Effects"]]
 [connection signal="value_changed" from="Panel/VBoxContainer/Music" to="." method="_on_slider_value_changed" binds= ["Music"]]
 [connection signal="value_changed" from="Panel/VBoxContainer/Selecter" to="." method="_on_selecter_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/Selecter3" to="." method="_on_diemode_value_changed"]

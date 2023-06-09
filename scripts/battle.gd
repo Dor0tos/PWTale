@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var bottom_panel_active = true
 @onready var selected_button = 0
 @onready var prev_selected_button = -1
+@onready var name_label = $Panel/MainPanel/VBoxContainer/CharacterPanel/Container/HBoxContainer/Name_L
+@onready var level_label = $Panel/MainPanel/VBoxContainer/CharacterPanel/Container/HBoxContainer/Level_L
 @onready var PWGood = $PWGood
 @onready var back_panel = $Panel/MainPanel/VBoxContainer/TabPanels/Panel
 @onready var fight_panel = $Panel/MainPanel/VBoxContainer/TabPanels/Attack_Template
@@ -17,62 +19,166 @@ extends CanvasLayer
 @onready var final_stage = false
 @onready var final_stage_begin = false
 
+func condition_pwgood_health_level(level : float):
+	return PWGood.health < PWGood.max_health * level / 100
+
+func condition_bool(val):
+	return val
+
+func condition_random(threshhold : float):
+	return randf() < threshhold / 100
+
 @onready var pw_dialogue = [
-	"",
-	"Зачем? Что тебе нужно было на моей базе?!"
+	{"text" : ["Что тебе нужно было на моей базе?!"],
+	 "face" : [1],
+	 "post_face" : 0,
+	 "condition" : [condition_bool, true]},
+	{"text" : [],
+	 "face" : [1],
+	 "post_face" : 0,
+	 "condition" : [condition_bool, true]},
+	{"text" : [],
+	 "face" : [1],
+	 "post_face" : 0,
+	 "condition" : [condition_bool, true]},
+	{"text" : ["Что, уже не такой весёлый?"],
+	 "face" : [2],
+	 "post_face" : 9,
+	 "condition" : [condition_bool, true]},
+	{"text" : ["А потом я тебя ещё и забаню"],
+	 "face" : [2],
+	 "post_face" : 9,
+	 "condition" : [condition_bool, true]},
+	{"text" : ["Что-то не так, ты уже должен быть умереть..."],
+	 "face" : [10],
+	 "post_face" : 0,
+	 "condition" : [condition_pwgood_health_level, 65]},
+	{"text" : ["Ты мне уже начинаешь надоедать"],
+	 "face" : [3],
+	 "post_face" : 6,
+	 "condition" : [condition_pwgood_health_level, 45]},
+	{"text" : ["И хотя технически это я на тебя напал", "Виноват ты"],
+	 "face" : [19, 3],
+	 "post_face" : 6,
+	 "condition" : [condition_bool, true]},
+	{"text" : ["ДА УМРИ ТЫ УЖЕ!!"],
+	 "face" : [8],
+	 "post_face" : 11,
+	 "condition" : [condition_pwgood_health_level, 15]},
+	{"text" : ["Оуф [от фр. Oeuf - яйцо]"],
+	 "face" : [15],
+	 "post_face" : 11,
+	 "condition" : [condition_random, 15]},
 ]
+
+@onready var post_face = 0
 
 @onready var buttons = [
 	$"Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button",
 	$"Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button",
-	$"Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button",
-	$"Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button"
+	$"Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button"
 ]
 
 signal final_begin_ended
 
 func _ready():
-	
 	selected_button = 0
 	text_panel.run_mode = 1
 	hp_bar._set_current_health(92)
+	$DeathLabel.text = "[right]Смерти: %d" % [Global.Death_Count]
 	hide_panels()
 	_end_attack()
 	draw_button()
+	
+	name_label.text = "GNEG" if !Global.one_hit_mode else "OBSI"
+	level_label.text = "yp 19" if !Global.one_hit_mode else "yp -1"
 	
 	sub_battle_text("Кажется теперь у вас проблемы")
 	
 	SceneTransition.connect("pause_disabled", pause_disabled)
 	
-	await get_tree().create_timer(1.0).timeout
+	if !Global.Battle_Start_again:
+		disable_buttons()
+		await get_tree().create_timer(1.0).timeout
+		pwgood_say("Ну что же...", 1)
+		await self.bubble_done
+		pwgood_say("А, кстати... Ещё кое-что перед началом", 1)
+		await self.bubble_done
+		$AnimationPlayer.play("remove_mercy")
+		await $AnimationPlayer.animation_finished
+		pwgood_say("NO WAY, он убрал кнопку пощады", 17)
+		await self.bubble_done
+		if Global.one_hit_mode:
+			pwgood_say("Погоди, ты включил режим \"Без урона\"?", 7)
+			await self.bubble_done
+			pwgood_say("Хе-хе-хе-хе", 16, true)
+			await self.bubble_done
+			PWGood.set_face(16)
+			
+			hp_bar._set_current_health(1)
+			hp_bar._set_max_health(1)
+			$HealthSound.play()
+			await get_tree().create_timer(0.25).timeout
+			
+			pwgood_say("Поехали", 16, true)
+			await self.bubble_done
+			
+			PWGood.set_face(9)
+			$DeathLabel.visible = Global.Death_Count > 0
+			
+			sub_battle_text("Кажется теперь у вас большие проблемы")
+			enable_buttons()
+			pwgood_said()
+		else:
+			pwgood_say("А теперь погнали", 1)
+			await self.bubble_done
+			PWGood.set_face(0)
+			enable_buttons()
+			pwgood_said()
+	else:
+		if Global.one_hit_mode:
+			hp_bar._set_current_health(1)
+			hp_bar._set_max_health(1)
+			$DeathLabel.visible = Global.Death_Count > 0
+		$Panel2.visible = false
+		$Piston.visible = false
+	
 	$AudioStreamPlayer.play()
 
-func pwgood_say(text, face_id):
+signal bubble_done
+func pwgood_say(text, face_id, is_epic = false):
 	bottom_panel_active = false
 	back_panel.visible = true
 	disable_buttons()
-	PWGood.say(text)
+	PWGood.set_face(face_id)
+	if is_epic:
+		PWGood.say_epic(text)
+	else:
+		PWGood.say(text)
 	await PWGood.bubble_done
+	emit_signal("bubble_done")
+
+func pwgood_said():
 	bottom_panel_active = true
 	enable_buttons()
 
 func draw_button():
-	for i in range(4):
+	for i in range(3):
 		buttons[i].change_selection_status(i == selected_button)
 
 func pause_disabled():
 	AudioServer.set_bus_effect_enabled(
 		AudioServer.get_bus_index("Music"), 0, false
 	)
-	create_tween().tween_property($AudioStreamPlayer, "volume_db", 12, 0.5)
+	create_tween().tween_property($AudioStreamPlayer, "volume_db", 0, 0.5)
 
 func _input(event):
 	if bottom_panel_active:
 		if Input.is_action_just_pressed("ui_left"):
-			selected_button = 3 if selected_button == 0 else selected_button - 1
+			selected_button = 2 if selected_button == 0 else selected_button - 1
 			draw_button()
 		if Input.is_action_just_pressed("ui_right"):
-			selected_button = 0 if selected_button == 3 else selected_button + 1
+			selected_button = 0 if selected_button == 2 else selected_button + 1
 			draw_button()
 	
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -89,13 +195,13 @@ func disable_buttons():
 	if selected_button != -1:
 		prev_selected_button = selected_button
 	selected_button = -1
-	for i in range(4):
+	for i in range(3):
 		Global.set_focus(buttons[i], false)
 	draw_button()
 
 func enable_buttons():
 	selected_button = prev_selected_button
-	for i in range(4):
+	for i in range(3):
 		Global.set_focus(buttons[i], true)
 	draw_button()
 
@@ -219,6 +325,7 @@ func _battle_PWGood(arg):
 		final_stage = true
 	var died = PWGood.health <= 0
 	await PWGood.animation_finished
+	PWGood.set_face(post_face)
 	if !died:
 		_action_end()
 	else:
@@ -363,12 +470,19 @@ func _action_end():
 	await fight_panel.attack_finished
 	
 	if pw_dialogue.size() != 0:
-		if pw_dialogue[0] == "":
+		if pw_dialogue[0]["text"].size() == 0:
 			pw_dialogue.pop_front()
 			bottom_panel_active = true
 			enable_buttons()
 		else:
-			pwgood_say(pw_dialogue.pop_front(), 0)
+			if pw_dialogue[0]["condition"][0].call(pw_dialogue[0]["condition"][1]):
+				var speech = pw_dialogue.pop_front()
+				for id in range(speech["text"].size()):
+					pwgood_say(speech["text"][id], speech["face"][id])
+					await self.bubble_done
+					post_face = speech["post_face"]
+			PWGood.set_face(post_face)
+			pwgood_said()
 	else:
 		bottom_panel_active = true
 		enable_buttons()

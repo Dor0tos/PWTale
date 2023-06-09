@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bsrp54qtce06e"]
+[gd_scene load_steps=36 format=3 uid="uid://bsrp54qtce06e"]
 
 [ext_resource type="Script" path="res://scripts/battle.gd" id="1_rv1ro"]
 [ext_resource type="PackedScene" uid="uid://ds4bo0jse2578" path="res://assets/objects/pw_good.tscn" id="1_xixm8"]
@@ -19,6 +19,12 @@
 [ext_resource type="AudioStream" uid="uid://c4wqpakvse6f1" path="res://assets/sounds/snd_squeak.wav" id="11_ddcs1"]
 [ext_resource type="PackedScene" uid="uid://cxld2m0fhnd0d" path="res://assets/objects/batlle_background.tscn" id="15_36qer"]
 [ext_resource type="AudioStream" uid="uid://bxmtax33ltom4" path="res://assets/sounds/JETPACK HELLRIDE (MEGALOVANIA, but it's Jetpack Joyride) (mp3cut.net) (1).mp3" id="16_6u5ik"]
+[ext_resource type="AudioStream" uid="uid://dke1gwsxhb3f4" path="res://assets/sounds/snd_bell.wav" id="18_gowbg"]
+[ext_resource type="Texture2D" uid="uid://dahjdlcwi7v08" path="res://assets/sprites/Piston.png" id="20_ve1sg"]
+[ext_resource type="AudioStream" uid="uid://dbc7asx75f2cn" path="res://assets/sounds/in.mp3" id="21_2qbfm"]
+[ext_resource type="AudioStream" uid="uid://c28ci4p3r8ndq" path="res://assets/sounds/out.mp3" id="22_igte0"]
+[ext_resource type="Texture2D" uid="uid://25denujnau1v" path="res://assets/sprites/soul_destruction.png" id="24_1yej0"]
+[ext_resource type="FontFile" uid="uid://dkd3t2svsoy20" path="res://assets/fonts/dorotosfont.ttf" id="25_1jgvw"]
 
 [sub_resource type="Curve" id="Curve_prkqd"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -67,13 +73,84 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.980392, 0.415686, 0.0392157, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq5y1"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.980392, 0.415686, 0.0392157, 1)
+[sub_resource type="Animation" id="Animation_b2ims"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piston:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(287, 246)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(259, 189)]
+}
+
+[sub_resource type="Animation" id="Animation_ragmj"]
+resource_name = "remove_mercy"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutscenePlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("21_2qbfm")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("22_igte0")
+}],
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Piston:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(287, 246), Vector2(287, 219), Vector2(287, 219), Vector2(287, 246)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(259, 189), Vector2(259, 216)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fybbq"]
+_data = {
+"RESET": SubResource("Animation_b2ims"),
+"remove_mercy": SubResource("Animation_ragmj")
+}
 
 [node name="Battle" type="CanvasLayer"]
 script = ExtResource("1_rv1ro")
@@ -563,32 +640,39 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Mercy Button" type="Control" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel"]
-custom_minimum_size = Vector2(59, 19)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-script = ExtResource("3_sxncv")
-text = "ПОЩАДА"
-icon = ExtResource("5_beet5")
+[node name="Batlle_Background" parent="." instance=ExtResource("15_36qer")]
+position = Vector2(192, 43)
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
+[node name="PWGood" parent="." instance=ExtResource("1_xixm8")]
+position = Vector2(192, 59)
+scale = Vector2(0.8, 0.8)
 
-[node name="Panel" type="Panel" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_kq5y1")
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ddcs1")
+bus = &"Effects"
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel"]
+[node name="HealthSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_gowbg")
+bus = &"Effects"
+
+[node name="CutscenePlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 12.0
+bus = &"Effects"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("16_6u5ik")
+bus = &"Music"
+
+[node name="Panel2" type="Panel" parent="."]
+custom_minimum_size = Vector2(55, 15)
+offset_left = 259.0
+offset_top = 189.0
+offset_right = 314.0
+offset_bottom = 204.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y8j7q")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel2"]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -601,12 +685,12 @@ size_flags_horizontal = 3
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 3
 
-[node name="Control" type="Control" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel/MarginContainer2"]
+[node name="Control" type="Control" parent="Panel2/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel/MarginContainer2/Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel2/MarginContainer2/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -620,10 +704,10 @@ size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0.980392, 0.415686, 0.0392157, 1)
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-text = "[right]БИТВА"
+text = "[right]ПОЩАДА"
 fit_content = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -633,16 +717,15 @@ grow_vertical = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 0
 
-[node name="TextureRect" type="TextureRect" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel/MarginContainer"]
-modulate = Color(1, 0, 0, 1)
+[node name="TextureRect" type="TextureRect" parent="Panel2/MarginContainer"]
 custom_minimum_size = Vector2(16, 10)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-texture = ExtResource("5_ueg1h")
+texture = ExtResource("5_beet5")
 stretch_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button/MarginContainer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -651,23 +734,48 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Batlle_Background" parent="." instance=ExtResource("15_36qer")]
-position = Vector2(192, 43)
+[node name="Piston" type="Sprite2D" parent="."]
+position = Vector2(287, 246)
+texture = ExtResource("20_ve1sg")
 
-[node name="PWGood" parent="." instance=ExtResource("1_xixm8")]
-position = Vector2(192, 59)
-scale = Vector2(0.8, 0.8)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fybbq")
+}
 
-[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_ddcs1")
-volume_db = 12.0
-bus = &"Effects"
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("16_6u5ik")
-volume_db = 12.0
-bus = &"Music"
+[node name="Soul" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Soul"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("24_1yej0")
+hframes = 2
+
+[node name="DeathLabel" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 222.0
+offset_top = 169.0
+offset_right = 316.0
+offset_bottom = 182.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("25_1jgvw")
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "[right]Смерти: 100
+"
+scroll_active = false
+autowrap_mode = 0
 
 [connection signal="attack_finished" from="Panel/MainPanel/VBoxContainer/TabPanels/Attack_Template" to="." method="_on_attack_template_attack_finished"]
 [connection signal="get_damage" from="Panel/MainPanel/VBoxContainer/TabPanels/Attack_Template" to="." method="_on_attack_template_get_damage"]
@@ -675,4 +783,3 @@ bus = &"Music"
 [connection signal="button_pressed" from="Panel/MainPanel/VBoxContainer/ButtonsPanel/Battle Button" to="." method="_on_battle_button_pressed"]
 [connection signal="button_pressed" from="Panel/MainPanel/VBoxContainer/ButtonsPanel/Action Button" to="." method="_on_action_button_pressed"]
 [connection signal="button_pressed" from="Panel/MainPanel/VBoxContainer/ButtonsPanel/Items Button" to="." method="_on_items_button_pressed"]
-[connection signal="button_pressed" from="Panel/MainPanel/VBoxContainer/ButtonsPanel/Mercy Button" to="." method="_on_mercy_button_pressed"]

@@ -7,6 +7,7 @@ extends Control
 	$Panel/VBoxContainer/Effects,
 	$Panel/VBoxContainer/Music,
 	$Panel/VBoxContainer/Selecter,
+	$Panel/VBoxContainer/Selecter3,
 	$Panel/VBoxContainer/Selecter2,
 	$Panel/VBoxContainer/Button_Back
 ]
@@ -22,7 +23,8 @@ func _ready():
 	
 	settings[3].set_valuef(Global.Start_Difficulty)
 	
-	settings[4].set_value(Global.screen_mode)
+	settings[4].set_value(Global.one_hit_mode)
+	settings[5].set_value(Global.screen_mode)
 
 func selection_changed():
 	$MasterTester.stop()
@@ -32,35 +34,35 @@ func selection_changed():
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_UP or event.keycode == KEY_W:
-			if selected_setting == 4 and !screen_mode_saved:
+			if selected_setting == 5 and !screen_mode_saved:
 				settings[selected_setting].set_value(Global.screen_mode)
 				screen_mode_saved = true
 			
 			settings[selected_setting].deselect()
-			selected_setting = 5 if selected_setting - 1 < 0 else selected_setting - 1
+			selected_setting = 6 if selected_setting - 1 < 0 else selected_setting - 1
 			settings[selected_setting].select()
 			
-			if selected_setting == 4:
+			if selected_setting == 5:
 				screen_mode_saved = false
 			selection_changed()
 		elif event.keycode == KEY_DOWN or event.keycode == KEY_S:
-			if selected_setting == 4 and !screen_mode_saved:
+			if selected_setting == 5 and !screen_mode_saved:
 				settings[selected_setting].set_value(Global.screen_mode)
 				screen_mode_saved = true
 			
 			settings[selected_setting].deselect()
-			selected_setting = 0 if selected_setting + 1 > 5 else selected_setting + 1
+			selected_setting = 0 if selected_setting + 1 > 6 else selected_setting + 1
 			settings[selected_setting].select()
 			selection_changed()
 			
-			if selected_setting == 4:
+			if selected_setting == 5:
 				screen_mode_saved = false
 		elif event.keycode == KEY_ENTER:
 			$SoundPlayer.play()
-			if selected_setting == 4:
+			if selected_setting == 5:
 				screen_mode_saved = true
 				Global.set_screen_mode(settings[selected_setting].level)
-			elif selected_setting == 5:
+			elif selected_setting == 6:
 				Global.save_data()
 				SceneTransition.ui_transition("res://Scenes/MainMenu.tscn")
 
@@ -100,3 +102,7 @@ func _on_selecter_value_changed(value):
 		Global.Start_Difficulty = 0.50
 	elif value == 3:
 		Global.Start_Difficulty = 0.75
+
+
+func _on_diemode_value_changed(value):
+	Global.one_hit_mode = value

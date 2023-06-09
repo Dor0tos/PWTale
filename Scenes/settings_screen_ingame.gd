@@ -65,6 +65,9 @@ func _input(event):
 				SceneTransition.pause_off(get_tree().get_root())
 			elif selected_setting == 5:
 				Global.save_data()
+				AudioServer.set_bus_effect_enabled(
+					AudioServer.get_bus_index("Music"), 0, false
+				)
 				SceneTransition.ui_transition("res://Scenes/MainMenu.tscn")
 		elif event.keycode == KEY_ESCAPE:
 			$UI/SoundPlayer.play()

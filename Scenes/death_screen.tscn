@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://wm72p68l7lkg"]
+[gd_scene load_steps=16 format=3 uid="uid://wm72p68l7lkg"]
 
 [ext_resource type="Texture2D" uid="uid://25denujnau1v" path="res://assets/sprites/soul_destruction.png" id="1_144yg"]
 [ext_resource type="Script" path="res://scripts/death_screen.gd" id="1_abnsk"]
@@ -33,42 +33,6 @@ angle_max = 229.8
 
 [sub_resource type="Animation" id="Animation_ruwo3"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/VBoxContainer/TextureRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Panel/VBoxContainer/Button_TryAgain:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0.882353, 0.458824, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Panel/VBoxContainer/Button_Exit:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_3fwt2"]
 resource_name = "appear"
@@ -123,10 +87,27 @@ tracks/3/keys = {
 "values": [Color(1, 0.882353, 0.458824, 0), Color(1, 0.882353, 0.458824, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ixy2q"]
+resource_name = "pov"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ПользовательскийРазмер–2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5, 5.5, 8, 8.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1upkk"]
 _data = {
 "RESET": SubResource("Animation_ruwo3"),
-"appear": SubResource("Animation_3fwt2")
+"appear": SubResource("Animation_3fwt2"),
+"pov": SubResource("Animation_ixy2q")
 }
 
 [node name="Death_Screen" type="Control"]

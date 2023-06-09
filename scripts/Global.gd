@@ -10,7 +10,7 @@ enum DifficultyMode {
 	EXTREME
 }
 
-var Difficulty_Mode : DifficultyMode = DifficultyMode.EASY
+var Difficulty_Mode : DifficultyMode = DifficultyMode.MODERATE
 
 enum ScreenMode {
 	WINDOWED,
@@ -20,8 +20,11 @@ enum ScreenMode {
 
 var screen_mode : ScreenMode = ScreenMode.WINDOWED
 
-var Volume_settings = [1, 1, 0.4]
+var Volume_settings = [0.54, 0.36, 0.42]
 var Start_Difficulty = 0.3
+
+var one_hit_mode = false
+var Death_Count = 0
 
 @onready var pause_obj = preload("res://Scenes/settings_screen_ingame.tscn")
 var pause_menu
@@ -29,6 +32,8 @@ var pause_menu
 @onready var VolumeCurve = preload("res://Scenes/Volume_Curve.tres")
 
 var prev_scene_path = ""
+var Battle_Start_again = false
+var interactive_states = [true, true, true, true, true, true, true]
 
 class Item:
 	var Name : String
@@ -66,6 +71,8 @@ func save_data():
 	config.set_value("Settings", "screen_mode", screen_mode)
 	config.set_value("Settings", "Volume_settings", Volume_settings)
 	config.set_value("Settings", "Difficulty_Mode", Difficulty_Mode)
+	config.set_value("Settings", "OneHit_Mode", one_hit_mode)
+	config.set_value("OT_DLC", "Death_Count", Death_Count)
 
 	config.save("res://settings.cfg")
 
@@ -82,6 +89,8 @@ func load_data():
 	set_screen_mode(config.get_value("Settings", "screen_mode", screen_mode))
 	set_volume(config.get_value("Settings", "Volume_settings", Volume_settings))
 	set_difficulty(config.get_value("Settings", "Difficulty_Mode", Difficulty_Mode))
+	set_one_hit(config.get_value("Settings", "OneHit_Mode", false))
+	Death_Count = config.get_value("OT_DLC", "Death_Count", 0)
 
 func _ready():
 	load_data()
@@ -89,6 +98,9 @@ func _ready():
 
 func percentage_to_db(perc: float):
 	return VolumeCurve.sample(perc) * -80.0
+
+func set_one_hit(mode):
+	one_hit_mode = mode
 
 func set_difficulty(mode):
 	Difficulty_Mode = mode

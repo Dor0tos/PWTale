@@ -4,7 +4,7 @@ extends Control
 @onready var buttons = [
 	$Panel/VBoxContainer/Button_Begin,
 	$Panel/VBoxContainer/Button_BeginBattle,
-	$Panel/VBoxContainer/Button_Settings,
+	$Panel/VBoxContainer/HBoxContainer/Button_Settings,
 	$Panel/VBoxContainer/Button_Content,
 	$Panel/VBoxContainer/Button_exit
 ]
@@ -15,7 +15,13 @@ func percentage_to_db(perc: float):
 	return VolumeCurve.sample(perc) * -80.0
 
 func _ready():
+	Global.load_data()
+	Global.Battle_Start_again = false
 	buttons[selected_button].select()
+	
+	$AnimationPlayer.play("HardMode")
+	$Panel/RedFlame.visible = Global.one_hit_mode
+	$Panel/Particles.visible = Global.one_hit_mode
 
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
@@ -30,6 +36,7 @@ func _input(event):
 		elif event.keycode == KEY_ENTER:
 			$AudioPlayer.play()
 			if selected_button == 0:
+				Global.interactive_states = [true, true, true, true, true, true, true]
 				SceneTransition.ui_transition("res://Scenes/Intro.tscn")
 			if selected_button == 1:
 				SceneTransition.fall_in_battle(Vector2(

@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://ctaugu5v8w17e"]
 
-[ext_resource type="Script" path="res://Scripts/base_scene.gd" id="1_iybxi"]
+[ext_resource type="Script" path="res://scripts/base_scene.gd" id="1_p1wq8"]
 [ext_resource type="PackedScene" uid="uid://cpa6ya8jw40gf" path="res://assets/hall_frame.tscn" id="2_67wok"]
 [ext_resource type="PackedScene" uid="uid://c5vjjbkguyikt" path="res://assets/gneg.tscn" id="3_2xnlu"]
 [ext_resource type="PackedScene" uid="uid://cy8g2um734pb2" path="res://assets/hall_frame_empty.tscn" id="3_3wfii"]
@@ -34,7 +34,7 @@ size = Vector2(19.058, 91)
 size = Vector2(26, 3.25)
 
 [node name="Scene" type="Node"]
-script = ExtResource("1_iybxi")
+script = ExtResource("1_p1wq8")
 
 [node name="World" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -210,7 +210,7 @@ shown_text = PackedStringArray("В сундуке полно грязи и ка�
 
 [node name="Shulker" parent="World" instance=ExtResource("5_tjti2")]
 position = Vector2(350, 89)
-shown_text = PackedStringArray("В этом сундуке лежат бумаги, на которых нарисованы стороны бедрока")
+shown_text = PackedStringArray("В этом шалкере лежат бумаги, на которых нарисованы стороны бедрока")
 shulker_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [node name="Shulker2" parent="World" instance=ExtResource("5_tjti2")]
@@ -346,57 +346,48 @@ shape = SubResource("RectangleShape2D_e7vel")
 position = Vector2(6.67029, 54.5)
 shape = SubResource("RectangleShape2D_82vyr")
 
-[node name="Triggers" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
+[node name="Bedrock Room Entry" type="Area2D" parent="World"]
 
-[node name="Bedrock Room Entry" type="Area2D" parent="Triggers"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Bedrock Room Entry"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Bedrock Room Entry"]
 position = Vector2(240, 78)
 shape = SubResource("RectangleShape2D_7avvt")
 
-[node name="Donut Room Entry" type="Area2D" parent="Triggers"]
+[node name="Donut Room Entry" type="Area2D" parent="World"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Donut Room Entry"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Donut Room Entry"]
 position = Vector2(528, 78)
 shape = SubResource("RectangleShape2D_7avvt")
 
-[node name="Plants Room Entry" type="Area2D" parent="Triggers"]
+[node name="Plants Room Entry" type="Area2D" parent="World"]
 position = Vector2(96, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Plants Room Entry"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Plants Room Entry"]
 position = Vector2(528, 78)
 shape = SubResource("RectangleShape2D_7avvt")
 
-[node name="Reverce Room Entry" type="Area2D" parent="Triggers"]
+[node name="Reverce Room Entry" type="Area2D" parent="World"]
 position = Vector2(912, 78)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Reverce Room Entry"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Reverce Room Entry"]
 shape = SubResource("RectangleShape2D_7avvt")
 
-[node name="Cubes Room Entry" type="Area2D" parent="Triggers"]
+[node name="Cubes Room Entry" type="Area2D" parent="World"]
 position = Vector2(1584, 78)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cubes Room Entry"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Cubes Room Entry"]
 shape = SubResource("RectangleShape2D_7avvt")
 
-[node name="Experiment Room Entry" type="Area2D" parent="Triggers"]
+[node name="Experiment Room Entry" type="Area2D" parent="World"]
 position = Vector2(1295, 78)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Experiment Room Entry"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Experiment Room Entry"]
 shape = SubResource("RectangleShape2D_7avvt")
 
-[node name="Wardrobe Room Entry" type="Area2D" parent="Triggers"]
+[node name="Wardrobe Room Entry" type="Area2D" parent="World"]
 position = Vector2(1200, 78)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Wardrobe Room Entry"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Wardrobe Room Entry"]
 shape = SubResource("RectangleShape2D_7avvt")
 
 [connection signal="body_entered" from="World/Last_envc_activate" to="." method="_on_last_envc_activate_body_entered"]
 [connection signal="battle_begin" from="World/PWGood_last_encounter" to="." method="_on_pw_good_encounter_battle_begin"]
-[connection signal="body_entered" from="Triggers/Donut Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/donut_room.tscn"]]
-[connection signal="body_entered" from="Triggers/Plants Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/plants_room.tscn"]]
-[connection signal="body_entered" from="Triggers/Reverce Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/reverce_room.tscn"]]
-[connection signal="body_entered" from="Triggers/Cubes Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/cubes_room.tscn"]]
-[connection signal="body_entered" from="Triggers/Experiment Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/experiment_room.tscn"]]
-[connection signal="body_entered" from="Triggers/Wardrobe Room Entry" to="." method="_on_room_entry_body_entered" binds= ["res://Scenes/garderob_room.tscn"]]

@@ -61,5 +61,5 @@ func tell(text : PackedStringArray):
 		end()
 	else:
 		emit_signal("battle_begin")
-		Global.Pre_Battle_Inventory = Global.Inventory
+		Global.Pre_Battle_Inventory = Global.Inventory.duplicate(true)
 		end()
